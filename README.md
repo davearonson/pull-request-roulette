@@ -1,4 +1,4 @@
-t-roulette
+pull-request-roulette
 =====================
 
 Web app to match up developers with people willing to comment on their pull requests.
