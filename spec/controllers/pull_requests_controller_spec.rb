@@ -24,7 +24,7 @@ describe PullRequestsController do
   # PullRequest. As you add validations to PullRequest, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { 'url' => 'https://github.com/thomasjefferson/usa/pulls/1776' }
+    { 'url' => 'https://github.com/thomasjefferson/usa/pull/1776' }
   end
 
   # This should return the minimal set of values that should be in the session
