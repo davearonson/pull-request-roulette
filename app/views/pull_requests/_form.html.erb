@@ -1,0 +1,21 @@
+<%= simple_form_for(@pull_request) do |f| %>
+  <% if @pull_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pull_request.errors.count, "error") %> prohibited this pull_request from being saved:</h2>
+
+      <ul>
+      <% @pull_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fieldset">
+    <%= f.input :url, label: 'URL' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

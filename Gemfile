@@ -1,16 +1,23 @@
+ruby '2.0.0'
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
 gem 'pg'
+gem 'simple_form'
 
 group :development do
-    gem 'brakeman', :require => false
+  gem 'brakeman', :require => false
 end
 
 group :test, :development do
-    gem "rspec-rails"
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'capybara-webkit'
+  gem 'mocha'
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required
