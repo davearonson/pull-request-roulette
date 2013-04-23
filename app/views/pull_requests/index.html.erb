@@ -1,17 +1,20 @@
-<h1>Listing pull_requests</h1>
+<h1>Welcome to Pull Request Roulette!</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>URL</th>
-      <th></th>
-    </tr>
-  </thead>
+<p>Below is a table of pull requests (or PRs) submitted for review, belonging
+to open-source projects hosted on Github.&nbsp; Click on a URL to open it in a
+new tab or window.&nbsp; Click Take to commit to reviewing that PR.&nbsp;</p>
 
+<p>Please take this commitment seriously!&nbsp; It takes the PR out of the
+list, so nobody else can take it.&nbsp; If for whatever reason you can't review
+it in a timely manner, please put it back in the list.&nbsp; You can do this by
+submitting it just as if it were a brand-new submission.</p>
+
+<table border="1" cellpadding="5">
   <tbody>
     <% @pull_requests.each do |pull_request| %>
     <tr>
       <td><%= link_to pull_request.url, pull_request.url, target: '_new' %></td>
+      <td><%= link_to 'Edit', edit_pull_request_path(pull_request) %></td>
       <td><%= link_to 'Take', pull_request, method: :delete,
               data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %></td>
     </tr>
@@ -19,6 +22,10 @@
   </tbody>
 </table>
 
-<br />
+<p><%= link_to 'Submit a New Pull Request', new_pull_request_path %></p>
 
-<%= link_to 'New Pull request', new_pull_request_path %>
+<p>This is a public service of <%= link_to('Codosaurus, LLC',
+'http://www.codosaur.us', target: '_new') %>.&nbsp; See <%=
+link_to('https://github.com/davearonson/pull-request-roulette',
+        'https://github.com/davearonson/pull-request-roulette', target: '_new')
+%> for more information.</p>

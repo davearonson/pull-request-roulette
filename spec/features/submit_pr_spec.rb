@@ -8,8 +8,26 @@ describe 'submit a pr' do
     then_pr_is_not_in_system
   end
 
-  it 'accepts valid URLs' do
+  it 'accepts canonical valid URLs' do
     when_i_submit_good_url
+    then_i_should_not_get_error_message
+    then_pr_is_in_system
+  end
+
+  it 'accepts valid URLs w/o httpS' do
+    when_i_submit_good_url 'http://github.com/thomas_jefferson/usa/pull/1776'
+    then_i_should_not_get_error_message
+    then_pr_is_in_system
+  end
+
+  it 'accepts valid URLs w/ www' do
+    when_i_submit_good_url 'https://www.github.com/thomas_jefferson/usa/pull/1776'
+    then_i_should_not_get_error_message
+    then_pr_is_in_system
+  end
+
+  it 'accepts valid URLs w/ www AND plain http' do
+    when_i_submit_good_url 'http://www.github.com/thomas_jefferson/usa/pull/1776'
     then_i_should_not_get_error_message
     then_pr_is_in_system
   end
@@ -26,8 +44,8 @@ end
 
 # WHENS
 
-def when_i_submit_good_url
-  submit_url 'https://github.com/tj/usa/pull/1776'
+def when_i_submit_good_url url='https://github.com/thomas_jefferson/usa/pull/1776'
+  submit_url url
 end
 
 def when_i_submit_bad_url

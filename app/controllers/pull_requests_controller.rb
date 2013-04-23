@@ -28,7 +28,7 @@ class PullRequestsController < ApplicationController
 
     respond_to do |format|
       if @pull_request.save
-        format.html { redirect_to @pull_request, notice: 'Pull request was successfully created.' }
+        format.html { redirect_to pull_requests_path, notice: 'Pull request was successfully created.' }
         format.json { render action: 'show', status: :created, location: @pull_request }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class PullRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @pull_request.update(pull_request_params)
-        format.html { redirect_to @pull_request, notice: 'Pull request was successfully updated.' }
+        format.html { redirect_to pull_requests_path, notice: 'Pull request was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

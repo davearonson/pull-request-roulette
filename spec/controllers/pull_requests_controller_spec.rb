@@ -79,9 +79,9 @@ describe PullRequestsController do
         assigns(:pull_request).should be_persisted
       end
 
-      it "redirects to the created pull_request" do
+      it "redirects to the pull_request list" do
         post :create, {:pull_request => valid_attributes}, valid_session
-        response.should redirect_to(PullRequest.last)
+        response.should redirect_to(pull_requests_path)
       end
     end
 
@@ -124,7 +124,7 @@ describe PullRequestsController do
       it "redirects to the pull_request" do
         pull_request = PullRequest.create! valid_attributes
         put :update, {:id => pull_request.to_param, :pull_request => valid_attributes}, valid_session
-        response.should redirect_to(pull_request)
+        response.should redirect_to(pull_requests_path)
       end
     end
 
