@@ -31,4 +31,10 @@ class PullRequest < ActiveRecord::Base
   end
   alias_method :is_still_an_open_github_pr?, :is_an_open_github_pr?
 
+  def self.parse_url url
+    regex = /https?:\/\/(www\.)?github.com\/(.*)\/(.*)\/pull\/([0-9]+)\z/
+    parsing = regex.match url
+    parsing[2..4]
+  end
+
 end

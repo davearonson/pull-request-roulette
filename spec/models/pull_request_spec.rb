@@ -82,13 +82,44 @@ describe PullRequest do
 
   end
 
+  describe "parse_url" do
+
+    describe 'parses' do
+
+      it 'canonical github URLs' do
+        PullRequest.parse_url(good_url).should == good_parts
+      end
+
+      it 'valid URLs w/o httpS' do
+        PullRequest.parse_url(good_url.gsub('https://', 'http://')).
+          should == good_parts
+      end
+
+      it 'valid URLs w/ www' do
+        PullRequest.parse_url(good_url.gsub('https://', 'https://www.')).
+          should == good_parts
+      end
+
+      it 'valid URLs w/ www AND plain http' do
+        PullRequest.parse_url(good_url.gsub('https://', 'http://www.')).
+          should == good_parts
+      end
+
+    end
+
+  end
+
 end
 
 private
 
 # HELPERS
 
+def good_parts
+  ['rails', 'rails', '2045']
+end
+
 def good_url
-  'http://github.com/rails/rails/pull/2045'
+  'http://github.com/%s/%s/pull/%d' % good_parts
 end
 
