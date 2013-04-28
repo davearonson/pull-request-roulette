@@ -34,6 +34,7 @@ class PullRequest < ActiveRecord::Base
   def self.parse_url url
     regex = /https?:\/\/(www\.)?github.com\/(.*)\/(.*)\/pull\/([0-9]+)\z/
     parsing = regex.match url
+    parsing ||= []
     parsing[2..4]
   end
 

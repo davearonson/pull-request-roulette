@@ -107,6 +107,22 @@ describe PullRequest do
 
     end
 
+    describe 'rejects' do
+
+      it 'URLs not at github' do
+        PullRequest.parse_url(good_url.gsub('github', 'bughit')).should be_nil
+      end
+
+      it 'URLs missing a piece' do
+        PullRequest.parse_url(good_url.gsub('/pull/', '/')).should be_nil
+      end
+
+      it 'URLs with extra junk tacked onto the end' do
+        PullRequest.parse_url(good_url + '?foo=bar').should be_nil
+      end
+    end
+
+
   end
 
 end
