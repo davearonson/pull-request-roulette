@@ -54,7 +54,6 @@ def when_i_submit_nonextant_pull
 end
 
 def when_i_submit_totally_bad_url
-  # no need to mock Github::PullRequests, it won't get that far
   submit_url 'http://thisisspam.com/fake-viagra.html'
 end
 

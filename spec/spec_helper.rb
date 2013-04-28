@@ -42,3 +42,14 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+# HELPER METHODS
+
+def good_parts
+  ['davearonson', 'pull-request-roulette', '14']
+end
+
+def good_url
+  'http://github.com/%s/%s/pull/%d' % good_parts
+end
+
