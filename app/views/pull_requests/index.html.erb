@@ -15,7 +15,6 @@ submitting it just as if it were a brand-new submission.</p>
       <% @pull_requests.each do |pull_request| %>
         <tr>
           <td><%= link_to pull_request.url, pull_request.url, target: '_new' %></td>
-          <td><%= link_to 'Edit', edit_pull_request_path(pull_request) %></td>
           <td><%= link_to 'Take', pull_request, method: :delete,
             data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %></td>
         </tr>
