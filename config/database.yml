@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: pull-request-roulette_development
+  database: pullrequestroulette_development
   pool: 5
-  username: pull-request-roulette
+  username: pullrequestroulette
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: pull-request-roulette_test
+  database: pullrequestroulette_test
   pool: 5
-  username: pull-request-roulette
+  username: pullrequestroulette
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: pull-request-roulette_production
+  database: pullrequestroulette_production
   pool: 5
-  username: pull-request-roulette
+  username: pullrequestroulette
   password:

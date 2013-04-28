@@ -1,3 +1,15 @@
+GIT
+  remote: git://github.com/heroku/rails3_serve_static_assets.git
+  revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
+  specs:
+    rails3_serve_static_assets (0.0.1)
+
+GIT
+  remote: git://github.com/heroku/rails_log_stdout.git
+  revision: 01b5bcc572e3baed1618f4068920dd83bd491fb2
+  specs:
+    rails_log_stdout (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,6 +37,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.33)
+    addressable (2.3.4)
     arel (4.0.0)
     atomic (1.1.8)
     bcrypt-ruby (3.0.1)
@@ -40,6 +53,17 @@ GEM
       slim (~> 1.3.6)
       terminal-table (~> 1.4)
     builder (3.1.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-screenshot (0.3.6)
+      capybara (>= 1.0, < 3)
+    capybara-webkit (0.14.2)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -58,9 +82,19 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
+    github_api (0.9.7)
+      faraday (~> 0.8.1)
+      hashie (>= 1.2)
+      multi_json (~> 1.4)
+      nokogiri (~> 1.5.2)
+      oauth2
     haml (4.0.2)
       tilt
+<<<<<<< HEAD
     hashie (2.0.3)
+=======
+    hashie (2.0.4)
+>>>>>>> master
     highline (1.6.18)
     hike (1.2.2)
     httpauth (0.2.0)
@@ -73,6 +107,11 @@ GEM
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
+<<<<<<< HEAD
+=======
+    launchy (2.3.0)
+      addressable (~> 2.3)
+>>>>>>> master
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -80,12 +119,20 @@ GEM
     mime-types (1.23)
     minitest (4.7.3)
     multi_json (1.7.2)
+<<<<<<< HEAD
     multipart-post (1.2.0)
     oauth2 (0.8.1)
+=======
+    multi_xml (0.5.3)
+    multipart-post (1.2.0)
+    nokogiri (1.5.9)
+    oauth2 (0.9.1)
+>>>>>>> master
       faraday (~> 0.8)
       httpauth (~> 0.1)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
+<<<<<<< HEAD
       rack (~> 1.2)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
@@ -97,6 +144,10 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.0.7)
+=======
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+>>>>>>> master
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -123,7 +174,7 @@ GEM
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.13.1)
-    rspec-rails (2.13.0)
+    rspec-rails (2.13.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -135,13 +186,14 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
-    sass (3.2.7)
+    sass (3.2.8)
     sass-rails (4.0.0.rc1)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0.rc0)
       tilt (~> 1.3)
     sexp_processor (4.2.1)
+    simple_form (1.4.1)
     slim (1.3.8)
       temple (~> 0.6.3)
       tilt (~> 1.3.3)
@@ -169,23 +221,41 @@ GEM
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+<<<<<<< HEAD
     warden (1.2.1)
       rack (>= 1.0)
+=======
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+>>>>>>> master
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   brakeman
+  capybara
+  capybara-screenshot
+  capybara-webkit
   coffee-rails (~> 4.0.0.beta1)
+<<<<<<< HEAD
   devise
   jbuilder (~> 1.0.1)
   jquery-rails
   omniauth
   omniauth-github
+=======
+  github_api
+  jbuilder (~> 1.0.1)
+  jquery-rails
+  launchy
+>>>>>>> master
   pg
   rails (= 4.0.0.beta1)
+  rails3_serve_static_assets!
+  rails_log_stdout!
   rspec-rails
   sass-rails (~> 4.0.0.beta1)
+  simple_form
   turbolinks
   uglifier (>= 1.0.3)

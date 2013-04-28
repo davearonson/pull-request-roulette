@@ -1,0 +1,15 @@
+#! /bin/sh
+
+APP=pr2
+BRANCH=master
+
+SITE=$1
+
+if [ -z "$SITE" ] ; then
+  echo "Must specify which site to update (eg, staging or prod)"
+  exit
+fi
+
+heroku maintenance:on --app $APP-$SITE
+git push $SITE $BRANCH
+heroku maintenance:off --app $APP-$SITE

@@ -1,3 +1,5 @@
+ruby '2.0.0'
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -5,14 +7,25 @@ gem 'rails', '4.0.0.beta1'
 
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'github_api'
 gem 'pg'
+gem 'simple_form'
 
 group :development do
-    gem 'brakeman', :require => false
+  gem 'brakeman', :require => false
 end
 
 group :test, :development do
-    gem "rspec-rails"
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'capybara-webkit'
+  gem 'launchy'
+  gem 'rspec-rails'
+end
+
+group :production do
+  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
 # Gems used only for assets and not required
