@@ -11,13 +11,15 @@ describe 'take a pr' do
     when_i_ask_for_one
     then_i_am_not_told_about_it
   end
+
 end
 
 private
 
 def given_pr_available
-  Github::PullRequests.any_instance.should_receive(:find).and_return(OpenStruct.new(state: 'open'))
-  @pr = PullRequest.create(url: "https://github.com/rails/rails/pull/2045")
+  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'open')) }
+  @pr = PullRequest.from_url(open_pr_url)
+  @pr.save!
 end
 
 def when_i_ask_for_one
@@ -25,7 +27,7 @@ def when_i_ask_for_one
 end
 
 def then_i_am_told_about_it
-  page.should have_content @pr.url
+  page.should have_content open_pr_parts.join(' ')
 end
 
 def when_i_take_it
@@ -33,5 +35,5 @@ def when_i_take_it
 end
 
 def then_i_am_not_told_about_it
-  page.should_not have_content @pr.url
+  page.should_not have_content open_pr_parts.join(' ')
 end

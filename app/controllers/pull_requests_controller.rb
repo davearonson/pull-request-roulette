@@ -24,7 +24,7 @@ class PullRequestsController < ApplicationController
   # POST /pull_requests
   # POST /pull_requests.json
   def create
-    @pull_request = PullRequest.new(pull_request_params)
+    @pull_request = PullRequest.from_url(params[:url])
 
     respond_to do |format|
       if @pull_request.save
@@ -65,10 +65,5 @@ class PullRequestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pull_request
       @pull_request = PullRequest.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pull_request_params
-      params[:pull_request].permit(:url)
     end
 end

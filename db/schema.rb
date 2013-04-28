@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130423001804) do
+ActiveRecord::Schema.define(version: 20130428152759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "pull_requests", force: true do |t|
-    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user",       default: "UNKNOWN", null: false
+    t.string   "repo",       default: "UNKNOWN", null: false
+    t.integer  "number",     default: 0,         null: false
   end
 
 end

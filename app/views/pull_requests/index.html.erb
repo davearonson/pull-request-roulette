@@ -1,8 +1,9 @@
 <h1>Welcome to Pull Request Roulette!</h1>
 
 <p>Below is a table of pull requests (or PRs) submitted for review, belonging
-to open-source projects hosted on Github.&nbsp; Click on a URL to open it in a
-new tab or window.&nbsp; Click Take to commit to reviewing that PR.&nbsp;</p>
+to open-source projects hosted on Github.&nbsp; (User is the project owner, not
+the creator of the PR.)&nbsp; Click Open open it in a new tab or window.&nbsp;
+Click Take to commit to reviewing that PR.&nbsp;</p>
 
 <p>Please take this commitment seriously!&nbsp; It takes the PR out of the
 list, so nobody else can take it.&nbsp; If for whatever reason you can't review
@@ -10,25 +11,38 @@ it in a timely manner, please put it back in the list.&nbsp; You can do this by
 submitting it just as if it were a brand-new submission.</p>
 
 <table border="1" cellpadding="5">
-  <tbody>
-    <% if @pull_requests.any? %>
-      <% @pull_requests.each do |pull_request| %>
+  <% if @pull_requests.any? %>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Repo</th>
+        <th>Pull #</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @pull_requests.each do |pull_request| %>
+      <tbody>
         <tr>
-          <td><%= link_to pull_request.url, pull_request.url, target: '_new' %></td>
-          <td><%= link_to 'Edit', edit_pull_request_path(pull_request) %></td>
+          <td><%= pull_request.user %></td>
+          <td><%= pull_request.repo %></td>
+          <td><%= pull_request.number %></td>
+          <td><%= link_to 'Open', pull_request.to_url, target: '_new' %></td>
           <td><%= link_to 'Take', pull_request, method: :delete,
             data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %></td>
         </tr>
-      <% end %>
-    <% else %>
+      </tbody>
+    <% end %>
+  <% else %>
+    <tbody>
       <tr>
         <td>
           Sorry, there are currently no pull requests awaiting review!&nbsp;
           Please submit one, by clicking the link below.
         </td>
       </tr>
-    <% end%>
-  </tbody>
+    </tbody>
+  <% end%>
 </table>
 
 <p><%= link_to 'Submit a New Pull Request', new_pull_request_path %></p>

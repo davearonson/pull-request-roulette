@@ -2,15 +2,15 @@ require_relative '../spec_helper.rb'
 
 describe 'submit a pr' do
 
-  it 'accepts valid URLs' do
-    when_i_submit_good_url
+  it 'accepts URLs of open pr' do
+    when_i_submit_open_pr
     then_i_should_not_get_error_message
     then_pr_is_in_system
   end
 
   it 'rejects bad URLs' do
-    when_i_submit_totally_bad_url
-    then_i_should_get_error_message 'not a valid Github pull request'
+    when_i_submit_bad_url
+    then_i_should_get_error_message  # there will be a bunch in this case!
     then_pr_is_not_in_system
   end
 
@@ -20,8 +20,14 @@ describe 'submit a pr' do
     then_pr_is_not_in_system
   end
 
-  it 'rejects closed pulls' do
+  it 'rejects closed unmerged pulls' do
     when_i_submit_closed_pull
+    then_i_should_get_error_message 'pull request is not open'
+    then_pr_is_not_in_system
+  end
+
+  it 'rejects merged pulls' do
+    when_i_submit_merged_pull
     then_i_should_get_error_message 'pull request is not open'
     then_pr_is_not_in_system
   end
@@ -39,21 +45,28 @@ end
 # WHENS
 
 def when_i_submit_closed_pull
-  Github::PullRequests.any_instance.should_receive(:find).and_return(OpenStruct.new(state: 'closed'))
-  submit_url 'https://github.com/bogususer/bogusproject/pull/777'
+  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'closed')) }
+  submit_url closed_pr_url
 end
 
-def when_i_submit_good_url
-  Github::PullRequests.any_instance.should_receive(:find).and_return(OpenStruct.new(state: 'open'))
-  submit_url 'http://github.com/rails/rails/pull/2045'
+def when_i_submit_merged_pull
+  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'merged')) }
+  submit_url merged_pr_url
 end
 
 def when_i_submit_nonextant_pull
-  Github::PullRequests.any_instance.should_receive(:find).and_return(nil)
+  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, nil) }
   submit_url 'https://github.com/nosuchuser/nosuchproject/pull/666'
 end
 
-def when_i_submit_totally_bad_url
+def when_i_submit_open_pr
+  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'open')) }
+  submit_url open_pr_url
+end
+
+def when_i_submit_bad_url
+  # shouldn't get to the stage of finding
+  PullRequest.any_instance.stub(:validate_found?) { raise 'Ooops, we should not get here!' }
   submit_url 'http://thisisspam.com/fake-viagra.html'
 end
 
@@ -71,8 +84,8 @@ def then_i_should_not_get_error_message
 end
 
 def then_pr_is_in_system
-  visit pull_requests_path
-  page.should have_content @pr_url
+  user, repo, number = PullRequest.parse_url @pr_url
+  PullRequest.where(user: user).where(repo: repo).where(number: number).count.should == 1
 end
 
 def then_pr_is_not_in_system
@@ -93,6 +106,6 @@ end
 def submit_url url
   visit new_pull_request_path
   @pr_url = url
-  fill_in 'URL', with: @pr_url
+  fill_in 'url', with: @pr_url
   click_on 'Create Pull request'
 end
