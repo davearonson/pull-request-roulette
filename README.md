@@ -16,3 +16,7 @@ Possible features saved for later:
 - Let each side specify minimum rating for the other side to match.  (Premium feature?)
 - Make it work with *private* repos.  (Premium feature?)
 - Let reviewers say "I'll be available for next X hours", and let *premium* coders choose from a list of who's available.
+
+This line is here just to make a difference in this branch, versus master.
+This branch should not be merged.  It is here to serve as an example PR that
+has been closed *without* merging.
