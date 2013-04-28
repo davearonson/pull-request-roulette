@@ -16,3 +16,7 @@ Possible features saved for later:
 - Let each side specify minimum rating for the other side to match.  (Premium feature?)
 - Make it work with *private* repos.  (Premium feature?)
 - Let reviewers say "I'll be available for next X hours", and let *premium* coders choose from a list of who's available.
+
+This line is just to make sure there is a difference from master in this
+branch.  The pull request based on this branch should never be closed, because
+it serves as an example of an open pull request, for the tests.
