@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
+gem 'github_api'
 gem 'pg'
 gem 'simple_form'
 
@@ -17,7 +18,6 @@ group :test, :development do
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
   gem 'launchy'
-  # gem 'mocha'
   gem 'rspec-rails'
 end
 

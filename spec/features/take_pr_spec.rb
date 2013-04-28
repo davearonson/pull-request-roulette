@@ -1,6 +1,7 @@
 require_relative '../spec_helper.rb'
 
 describe 'take a pr' do
+
   # this is satisfied by basic crud
   it 'lets a user take a pr' do
     given_pr_available
@@ -15,7 +16,8 @@ end
 private
 
 def given_pr_available
-  @pr = PullRequest.create(url: "https://github.com/tj/usa/pull/1776")
+  Github::PullRequests.any_instance.should_receive(:find).and_return(OpenStruct.new(state: 'open'))
+  @pr = PullRequest.create(url: "https://github.com/rails/rails/pull/2045")
 end
 
 def when_i_ask_for_one
