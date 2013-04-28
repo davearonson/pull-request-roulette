@@ -64,17 +64,18 @@ describe PullRequest do
       end
 
       it 'rejects closed pulls' do
-        PullRequest.new(url: good_url.gsub('2045', 'url: 10262')).
+        PullRequest.new(url: good_url.gsub('14', 'url: 10262')).
           is_an_open_github_pr?.should be_false
       end
 
       it 'rejects nonexistent pulls' do
-        PullRequest.new(url: good_url.gsub('2045', 'url: 999999999')).
+        PullRequest.new(url: good_url.gsub('14', 'url: 999999999')).
           is_an_open_github_pr?.should be_false
       end
 
       it 'rejects pulls on nonextant repos' do
-        PullRequest.new(url: good_url.gsub('rails/rails', 'nosuch/nosuch')).
+        PullRequest.new(url: good_url.gsub('davearonson',
+                                           'There-Better-Be-No-Such-User')).
           is_an_open_github_pr?.should be_false
       end
 
@@ -132,7 +133,7 @@ private
 # HELPERS
 
 def good_parts
-  ['rails', 'rails', '2045']
+  ['davearonson', 'pull-request-roulette', '14']
 end
 
 def good_url
