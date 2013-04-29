@@ -18,6 +18,7 @@ PullRequestRoulette::Application.routes.draw do
 
   get 'auth/:provider/callback' =>'sessions#create', as: 'oauth_callback'
   get '/sign_out' =>'sessions#destroy', as: 'sign_out'
+  get '/sign_in' =>'sessions#new', as: 'sign_in'
 
   # Example resource route with options:
   #   resources :products do

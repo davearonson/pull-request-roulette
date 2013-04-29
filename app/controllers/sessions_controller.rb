@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+
+  def new
+    authorize_github_and_return_to root_path
+  end
+
   def create
     session[:auth_code] = params[:code]
     final_url = params[:final_url]

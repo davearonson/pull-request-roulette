@@ -1,4 +1,5 @@
 class PullRequestsController < ApplicationController
+  helper_method :signed_in?
 
   # TODO: extract authorization stuff to a before_action on new and destroy
 
@@ -10,8 +11,7 @@ class PullRequestsController < ApplicationController
 
   # GET /pull_requests/new
   def new
-    code = session[:auth_code]
-    if code.present?
+    if signed_in?
       @pull_request = PullRequest.new
     else
       authorize_github_and_return_to new_pull_request_path
@@ -37,27 +37,17 @@ class PullRequestsController < ApplicationController
   # DELETE /pull_requests/1
   # DELETE /pull_requests/1.json
   def destroy
-    code = session[:auth_code]
-    if code.present?
-      @pull_request = PullRequest.find(params[:id])
-      @pull_request.destroy
-      respond_to do |format|
+    respond_to do |format|
+      if signed_in?
+        @pull_request = PullRequest.find(params[:id])
+        @pull_request.destroy
         format.html { redirect_to pull_requests_url }
         format.json { head :no_content }
+      else
+        format.html { redirect_to pull_requests_url, notice: 'You must be logged in to Take a PR!' }
+        format.json { render json: @pull_request.errors, status: :unprocessable_entity }
       end
-    else
-      authorize_github_and_return_to pull_requests_path
     end
-  end
-
-  private
-
-  def authorize_github_and_return_to final_url
-    github = Github.new(client_id: ENV['GITHUB_KEY'],
-                        client_secret: ENV['GITHUB_SECRET'])
-    redirect_uri = oauth_callback_url(:github, final_url: final_url)
-    auth_address = github.authorize_url(redirect_uri: redirect_uri)
-    redirect_to auth_address
   end
 
 end

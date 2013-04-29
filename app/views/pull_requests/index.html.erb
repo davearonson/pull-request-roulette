@@ -28,8 +28,14 @@ submitting it just as if it were a brand-new submission.</p>
           <td><%= pull_request.repo %></td>
           <td><%= pull_request.number %></td>
           <td><%= link_to 'Open', pull_request.to_url, target: '_new' %></td>
-          <td><%= link_to 'Take', pull_request, method: :delete,
-            data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %></td>
+          <td>
+            <% if signed_in? %>
+              <%= link_to 'Take', pull_request, method: :delete,
+                data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %>
+            <% else %>
+              <%= link_to 'Log in to take', sign_in_path %>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     <% end %>
