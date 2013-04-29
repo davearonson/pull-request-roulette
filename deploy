@@ -13,3 +13,5 @@ fi
 heroku maintenance:on --app $APP-$SITE
 git push $SITE $BRANCH
 heroku maintenance:off --app $APP-$SITE
+
+echo 'Done.  Remember, you may need to migrate the database!'
