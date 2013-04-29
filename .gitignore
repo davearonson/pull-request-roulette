@@ -17,3 +17,6 @@
 
 # Ignore Ruby stuff from vendors
 /vendor/ruby
+
+# Ignore stuff that should not be shared
+/SECRETS
