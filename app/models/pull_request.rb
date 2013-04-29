@@ -3,7 +3,6 @@ class PullRequest < ActiveRecord::Base
   # ORDER IS IMPORTANT!  url_parsed verifies presence of stuff needed for the rest.
   # found retrieves the PR, and open checks its state
   validate :validate_url_parsed
-  validates_presence_of :number, :repo, :user
   validates_numericality_of :number, greater_than: 0, only_integer: true
   validate :validate_found
   validate :validate_open
@@ -31,6 +30,7 @@ class PullRequest < ActiveRecord::Base
   end
 
   def validate_found
+    return false if errors[:base].any?
     github = Github.new client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET']
     begin
       @pr = github.pull_requests.find(user, repo, number)
@@ -63,3 +63,4 @@ class PullRequest < ActiveRecord::Base
   end
 
 end
+  

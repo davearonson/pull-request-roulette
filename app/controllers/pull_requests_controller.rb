@@ -1,5 +1,6 @@
 class PullRequestsController < ApplicationController
-  before_action :set_pull_request, only: [:show, :edit, :update, :destroy]
+
+  # TODO: extract authorization stuff to a before_action on new and destroy
 
   # GET /pull_requests
   # GET /pull_requests.json
@@ -7,18 +8,14 @@ class PullRequestsController < ApplicationController
     @pull_requests = PullRequest.all
   end
 
-  # GET /pull_requests/1
-  # GET /pull_requests/1.json
-  def show
-  end
-
   # GET /pull_requests/new
   def new
-    @pull_request = PullRequest.new
-  end
-
-  # GET /pull_requests/1/edit
-  def edit
+    code = session[:auth_code]
+    if code.present?
+      @pull_request = PullRequest.new
+    else
+      authorize_github_and_return_to new_pull_request_path
+    end
   end
 
   # POST /pull_requests
@@ -37,33 +34,30 @@ class PullRequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pull_requests/1
-  # PATCH/PUT /pull_requests/1.json
-  def update
-    respond_to do |format|
-      if @pull_request.update(pull_request_params)
-        format.html { redirect_to pull_requests_path, notice: 'Pull request was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @pull_request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /pull_requests/1
   # DELETE /pull_requests/1.json
   def destroy
-    @pull_request.destroy
-    respond_to do |format|
-      format.html { redirect_to pull_requests_url }
-      format.json { head :no_content }
+    code = session[:auth_code]
+    if code.present?
+      @pull_request = PullRequest.find(params[:id])
+      @pull_request.destroy
+      respond_to do |format|
+        format.html { redirect_to pull_requests_url }
+        format.json { head :no_content }
+      end
+    else
+      authorize_github_and_return_to pull_requests_path
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pull_request
-      @pull_request = PullRequest.find(params[:id])
-    end
+
+  def authorize_github_and_return_to final_url
+    github = Github.new(client_id: ENV['GITHUB_KEY'],
+                        client_secret: ENV['GITHUB_SECRET'])
+    redirect_uri = oauth_callback_url(:github, final_url: final_url)
+    auth_address = github.authorize_url(redirect_uri: redirect_uri)
+    redirect_to auth_address
+  end
+
 end

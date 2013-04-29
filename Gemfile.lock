@@ -107,16 +107,23 @@ GEM
     mime-types (1.23)
     minitest (4.7.3)
     multi_json (1.7.2)
-    multi_xml (0.5.3)
     multipart-post (1.2.0)
     nokogiri (1.5.9)
-    oauth2 (0.9.1)
+    oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
-      multi_xml (~> 0.5)
       rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-github (1.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -206,6 +213,8 @@ DEPENDENCIES
   jbuilder (~> 1.0.1)
   jquery-rails
   launchy
+  omniauth
+  omniauth-github
   pg
   rails (= 4.0.0.beta1)
   rails3_serve_static_assets!
