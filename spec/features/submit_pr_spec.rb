@@ -14,6 +14,13 @@ describe 'submit a pr' do
     then_pr_is_not_in_system
   end
 
+  it 'rejects duplicate prs' do
+    given_an_exising_pr
+    when_i_submit_it
+    then_i_should_get_error_message  'is already known'
+    then_pr_is_not_in_system
+  end
+
   it 'rejects pulls that do not exist' do
     when_i_submit_nonextant_pull
     then_i_should_get_error_message 'ull request not found'

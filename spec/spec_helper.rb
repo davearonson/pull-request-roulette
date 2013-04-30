@@ -59,7 +59,6 @@ end
 
 def merged_pr_url
   PullRequest.url_format % merged_pr_parts
-end
 
 def open_pr_parts
   ['davearonson', 'pull-request-roulette', '14']
