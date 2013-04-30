@@ -4,6 +4,7 @@ class PullRequest < ActiveRecord::Base
   # found retrieves the PR, and open checks its state
   validate :validate_url_parsed
   validates_numericality_of :number, greater_than: 0, only_integer: true
+  validates_uniqueness_of :number, scope: [:user, :repo], message: 'That pull request is already listed'
   validate :validate_found
   validate :validate_open
 
@@ -33,21 +34,21 @@ class PullRequest < ActiveRecord::Base
     return false if errors[:base].any?
     github = Github.new client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET']
     begin
-      @pr = github.pull_requests.find(user, repo, number)
+      @pr_data = github.pull_requests.find(user, repo, number)
     rescue ArgumentError, Github::Error::NotFound, URI::InvalidURIError
       @pr = nil
     end
-    if ! @pr
-      errors[:base] << 'Pull request not found on Github'
+    if ! @pr_data
+      errors[:base] << 'That pull request was not found on Github'
       return false
     end
     true
   end
 
   def validate_open
-    return false if ! @pr
-    if @pr.state != 'open'
-      errors[:base] << "That pull request is not open, it is #{@pr.state}"
+    return false if ! @pr_data
+    if @pr_data.state != 'open'
+      errors[:base] << "That pull request is not open, it is #{@pr_data.state}"
       return false
     end
     true
