@@ -1,5 +1,6 @@
 class PullRequestsController < ApplicationController
   helper_method :signed_in?
+  before_action :authorize, on: [:create, :destroy]
 
   # TODO: extract authorization stuff to a before_action on new and destroy
 
@@ -11,11 +12,7 @@ class PullRequestsController < ApplicationController
 
   # GET /pull_requests/new
   def new
-    if signed_in?
-      @pull_request = PullRequest.new
-    else
-      authorize_github_and_return_to new_pull_request_path
-    end
+    @pull_request = PullRequest.new
   end
 
   # POST /pull_requests
@@ -48,6 +45,16 @@ class PullRequestsController < ApplicationController
         format.json { render json: @pull_request.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def authorize
+    authorize_github_and_return_to [request.protocol,
+                                    request.host_with_port,
+                                    request.fullpath,
+                                    '?',
+                                    request.params].join unless signed_in?
   end
 
 end

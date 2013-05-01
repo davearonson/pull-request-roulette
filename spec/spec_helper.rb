@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+require 'ostruct'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -45,6 +46,20 @@ end
 
 # HELPER METHODS
 
+# GIVENS
+
+def given_an_existing_pr
+  stub_finding_pr 'open'
+  @pr = PullRequest.from_url(open_pr_url)
+  @pr.save!
+end
+
+def given_i_am_signed_in
+  PullRequestsController.any_instance.stub(:authorize)
+end
+
+# OTHER
+
 def closed_pr_parts
   ['davearonson', 'pull-request-roulette', '16']
 end
@@ -67,4 +82,8 @@ end
 
 def open_pr_url
   PullRequest.url_format % open_pr_parts
+end
+
+def stub_finding_pr state=open
+  PullRequest.any_instance.stub(:validate_found) { @pr_data = OpenStruct(state: state) }
 end

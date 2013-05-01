@@ -15,15 +15,14 @@ describe 'submit a pr' do
   end
 
   it 'rejects duplicate prs' do
-    given_an_exising_pr
-    when_i_submit_it
-    then_i_should_get_error_message  'is already listed'
+    when_i_submit_preexisting_pr
+    then_i_should_get_error_message  'pull request is already listed'
     then_pr_is_not_in_system
   end
 
   it 'rejects pulls that do not exist' do
     when_i_submit_nonextant_pull
-    then_i_should_get_error_message 'ull request not found'
+    then_i_should_get_error_message 'pull request was not found on Github'
     then_pr_is_not_in_system
   end
 
@@ -45,35 +44,43 @@ private
 
 # GIVENS
 
-def given_on_new_pr_page
-  visit new_pull_request_path
-end
+# none at this time; should have some later for having logged in!
 
 # WHENS
 
 def when_i_submit_closed_pull
-  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'closed')) }
+  given_i_am_signed_in
+  stub_finding_pr 'closed'
   submit_url closed_pr_url
 end
 
+def when_i_submit_preexisting_pr
+  given_i_am_signed_in
+  given_an_existing_pr
+  submit_url @pr.to_url
+end
+
 def when_i_submit_merged_pull
-  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'merged')) }
+  given_i_am_signed_in
+  stub_finding_pr 'merged'
   submit_url merged_pr_url
 end
 
 def when_i_submit_nonextant_pull
-  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, nil) }
+  given_i_am_signed_in
+  PullRequest.any_instance.stub(:validate_found) { instance_variable_set(:@pr_data, nil) }
   submit_url 'https://github.com/nosuchuser/nosuchproject/pull/666'
 end
 
 def when_i_submit_open_pr
-  PullRequest.any_instance.stub(:validate_found?) { set_instance_variable(:@pr, OpenStruct(state: 'open')) }
+  given_i_am_signed_in
+  stub_finding_pr 'open'
   submit_url open_pr_url
 end
 
 def when_i_submit_bad_url
+  given_i_am_signed_in
   # shouldn't get to the stage of finding
-  PullRequest.any_instance.stub(:validate_found?) { raise 'Ooops, we should not get here!' }
   submit_url 'http://thisisspam.com/fake-viagra.html'
 end
 
