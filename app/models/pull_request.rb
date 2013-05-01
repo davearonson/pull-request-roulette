@@ -4,7 +4,7 @@ class PullRequest < ActiveRecord::Base
   # found retrieves the PR, and open checks its state
   validate :validate_url_parsed
   validates_numericality_of :number, greater_than: 0, only_integer: true
-  validates_uniqueness_of :number, scope: [:user, :repo], message: 'That pull request is already listed'
+  validates_uniqueness_of :number, scope: [:user, :repo], message: 'not unique; that pull request is already listed'
   validate :validate_found
   validate :validate_open
 

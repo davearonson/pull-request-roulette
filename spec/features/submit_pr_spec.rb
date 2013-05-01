@@ -17,7 +17,7 @@ describe 'submit a pr' do
   it 'rejects duplicate prs' do
     given_an_exising_pr
     when_i_submit_it
-    then_i_should_get_error_message  'is already known'
+    then_i_should_get_error_message  'is already listed'
     then_pr_is_not_in_system
   end
 
