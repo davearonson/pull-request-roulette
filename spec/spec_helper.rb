@@ -56,6 +56,7 @@ end
 
 def given_i_am_signed_in
   PullRequestsController.any_instance.stub(:authorize)
+  PullRequestsController.any_instance.stub(:signed_in?) { true }
 end
 
 # OTHER
@@ -85,5 +86,5 @@ def open_pr_url
 end
 
 def stub_finding_pr state=open
-  PullRequest.any_instance.stub(:validate_found) { @pr_data = OpenStruct(state: state) }
+  PullRequest.any_instance.stub(:validate_found) { @pr_data = OpenStruct.new(state: state) }
 end

@@ -3,7 +3,7 @@ require_relative '../spec_helper.rb'
 describe 'take a pr' do
 
   # this is satisfied by basic crud
-  it 'lets a user take a pr' do
+  it 'lets a logged-in user take a pr' do
     given_i_am_signed_in
     given_an_existing_pr
     when_i_ask_for_one
@@ -26,7 +26,7 @@ def then_i_am_told_about_it
 end
 
 def when_i_take_it
-  stub_finding_pr
+  stub_finding_pr 'open'
   click_on "take-#{@pr.id}"
 end
 
