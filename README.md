@@ -1,6 +1,8 @@
 pull-request-roulette
 =====================
 
+[![Code Climate](https://codeclimate.com/github/davearonson/pull-request-roulette.png)](https://codeclimate.com/github/davearonson/pull-request-roulette)
+
 Web app to match up developers, with public pull requests (PRs) on Github, with
 people willing to comment on their PRs.
 
