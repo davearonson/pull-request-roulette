@@ -68,7 +68,7 @@ end
 
 def when_i_submit_nonextant_pull
   given_i_am_signed_in
-  PullRequest.any_instance.stub(:validate_found) { instance_variable_set(:@pr_data, nil) }
+  PullRequest.any_instance.stub(:fetch_pr_data) { nil }
   submit_url 'https://github.com/nosuchuser/nosuchproject/pull/666'
 end
 
@@ -108,6 +108,22 @@ def then_pr_is_not_in_system
 end
 
 # HELPERS
+
+def closed_pr_parts
+  ['davearonson', 'pull-request-roulette', '16']
+end
+
+def closed_pr_url
+  PullRequest.url_format % closed_pr_parts
+end
+
+def merged_pr_parts
+  ['davearonson', 'pull-request-roulette', '15']
+end
+
+def merged_pr_url
+  PullRequest.url_format % merged_pr_parts
+end
 
 def msg_for_could_not_save
   'prohibited this pull_request from being saved'

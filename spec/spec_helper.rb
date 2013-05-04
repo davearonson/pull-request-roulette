@@ -61,22 +61,6 @@ end
 
 # OTHER
 
-def closed_pr_parts
-  ['davearonson', 'pull-request-roulette', '16']
-end
-
-def closed_pr_url
-  PullRequest.url_format % closed_pr_parts
-end
-
-def merged_pr_parts
-  ['davearonson', 'pull-request-roulette', '15']
-end
-
-def merged_pr_url
-  PullRequest.url_format % merged_pr_parts
-end
-
 def open_pr_parts
   ['davearonson', 'pull-request-roulette', '14']
 end
@@ -86,5 +70,5 @@ def open_pr_url
 end
 
 def stub_finding_pr state=open
-  PullRequest.any_instance.stub(:validate_found) { @pr_data = OpenStruct.new(state: state) }
+  PullRequest.any_instance.stub(:fetch_pr_data) { OpenStruct.new(state: state) }
 end
