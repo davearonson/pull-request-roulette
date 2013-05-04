@@ -32,12 +32,7 @@ class PullRequest < ActiveRecord::Base
 
   def validate_found
     return false if errors[:base].any?
-    github = Github.new client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET']
-    begin
-      @pr_data = github.pull_requests.find(user, repo, number)
-    rescue ArgumentError, Github::Error::NotFound, URI::InvalidURIError
-      @pr = nil
-    end
+    @pr_data = fetch_pr_data
     if ! @pr_data
       errors[:base] << 'That pull request was not found on Github'
       return false
@@ -61,6 +56,17 @@ class PullRequest < ActiveRecord::Base
       return false
     end
     true
+  end
+
+  private
+
+  def fetch_pr_data
+    github = Github.new client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET']
+    begin
+      github.pull_requests.find(user, repo, number)
+    rescue ArgumentError, Github::Error::NotFound, URI::InvalidURIError
+      nil
+    end
   end
 
 end
