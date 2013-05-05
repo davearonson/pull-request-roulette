@@ -22,7 +22,7 @@ article {
 
 body {
   background-color: green;
-  color: #fff;
+  color: white;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 12px;
   line-height: 1.5em;
@@ -58,7 +58,7 @@ p, ol, ul, td {
 }
 
 #notice {
-  color: green;
+  color: white;
 }
 
 #error_explanation {
@@ -67,18 +67,18 @@ p, ol, ul, td {
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #fff;
+  background-color: white;
   h2 {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    background-color: red;
   }
   ul li {
     list-style: square;
+    color: red;
   }
 }
 
