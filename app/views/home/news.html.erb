@@ -1,0 +1,107 @@
+<h1>Latest News</h1>
+
+<article>
+
+  <h1>2013-05-05: Yup, sure enough, <%= link_to('OAuth', 'http://oauth.net/',
+  target: '_new') %> problems....</h1>
+
+  <p>While trying to simplify some things about the <%= link_to('OAuth',
+  'http://oauth.net/', target: '_new') %> login process, so that I could more
+  easily test the features that require login, I screwed it up... and since the
+  <%= link_to('OAuth', 'http://oauth.net/', target: '_new') %> login itself is
+  so hard to test, I hadn't done so yet, so no tests broke.&nbsp; So, that's
+  why the production site has been unavailable for a couple days.&nbsp;
+  :-(&nbsp; If anybody out there knows how to test <%= link_to('OAuth',
+  'http://oauth.net/', target: '_new') %> login capability, using <%=
+  link_to('RSpec', 'http://rspec.info/', target: '_new') %> and <%=
+  link_to('Capybara', 'https://github.com/jnicklas/capybara', target: '_new')
+  %>, <i>without</i> dragging in much additional tooling, please let me
+  know.&nbsp; Thanks!</p>
+
+</article>
+
+<article>
+
+  <h1>2013-05-04: FINALLY some styling!</h1>
+
+  <p>I have finally added some basic styling.&nbsp; Eventually I'll try to find
+  some nice freely-usable graphics of a roulette wheel and/or table, but for
+  now the basic idea is a green background like the felt of a roulette table,
+  and most other things being in white on alternating red and black backgrounds
+  like the numbers on the wheel.&nbsp; I'm not sure yet of the color of text on
+  the main background, nor any fonts.&nbsp; Visual design is a weak point of
+  mine; I'm more of a back-end developer.&nbsp; (Not that there's anything
+  wrong with that!)&nbsp; Feel free to make suggestions, but please keep it
+  simple.</p>
+
+</article>
+
+<article>
+
+  <h1>2013-05-02: CodeClimate approves!</h1>
+
+  <p>I pointed <%= link_to('CodeClimate', 'https://codeclimate.com', target:
+  '_new') %> at the <%= link_to('Github', 'https://github.com', target: '_new')
+  %> repo for <%= link_to('Pull Request Roulette', root_path) %> (at <%=
+  link_to('https://github.com/davearonson/pull-request-roulette',
+  'https://github.com/davearonson/pull-request-roulette', target: '_new')
+  %>).&nbsp; It got a 4.0 "GPA", the highest possible!&nbsp; W00t!&nbsp; The
+  README file now proudly sports the resulting badge.</p>
+
+</article>
+
+<article>
+
+  <h1>2013-04-30: Duplicate PR rejection</h1>
+
+  <p><%= link_to('Pull Request Roulette', root_path) %> now rejects attempts to
+  submit pull requests that it already knows about.</p>
+
+</article>
+
+<article>
+
+  <h1>2013-04-28: Github Login integration</h1>
+
+  <p><%= link_to('Pull Request Roulette', root_path) %> now makes you sign into
+  <%= link_to('Github', 'https://github.com', target: '_new') %>, authorizing
+  here via <%= link_to('OAuth', 'http://oauth.net/', target: '_new') %> before
+  you can add or take (delete) a pull request.&nbsp; Third-party authorization
+  is rather tricky, and testing it doubly so, so I predict occasional problems
+  with this.&nbsp; :-(</p>
+
+</article>
+
+<article>
+
+  <h1>2013-04-27: Basic Github integration</h1>
+
+  <p><%= link_to('Pull Request Roulette', root_path) %> now rejects pull
+  requests that don't exist, or have been closed.</p>
+
+</article>
+
+<article>
+
+  <h1>2013-04-23: Basic Spammerproofing</h1>
+
+  <p>A few more bits functionality have been added.&nbsp; Mainly, since the
+  system would otherwise be horribly abusable by spammers, it now rejects URLs
+  that are not at least in the right format to be a <%= link_to('Github',
+  'https://github.com', target: '_new') %> pull request.</p>
+
+</article>
+
+<article>
+
+  <h1>2013-04-23: 3... 2... 1... LAUNCH!</h1>
+
+  <p>The basic functionality of <%= link_to('Pull Request Roulette', root_path)
+  %> launched today.&nbsp; Only the absolutely necessary functionality (adding
+  and removing something from a list of URLs), and no styling at all, has been
+  included.&nbsp; If you don't grok the name, it's sort of an homage to <%=
+  link_to('Chat Roulette', 'http://chatroulette.com', target: '_new') %>.</p>
+
+</article>
+
+<%= link_to('Home', root_path) %>

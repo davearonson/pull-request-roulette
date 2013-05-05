@@ -8,6 +8,18 @@ a {
   }
 }
 
+article {
+  margin: 2em 0;
+  h1 {
+    background: red;
+    padding: 0.5em;
+  }
+  p {
+    background: black;
+    padding: 0.5em;
+  }
+}
+
 body {
   background-color: green;
   color: #fff;
