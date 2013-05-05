@@ -13,8 +13,10 @@ body {
   color: #fff;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
+  line-height: 1.5em;
   padding: 1em;
+  max-width: 80em;
+  min-width: 20em;
 }
 
 div {
@@ -23,21 +25,21 @@ div {
   }
 }
 
+h1 { line-height: 1.2em; }
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
 }
 
-table {
-  tbody {
-    tr:nth-child(odd) { background-color: red }
-    tr:nth-child(even) { background-color: black }
+#pr-list {
+  td {
+    margin: 0;
+    padding: 0.5em;
   }
-  td { padding: 0.5em }
-  thead {
-    tr { background-color: #000 }
-  }
+  tr { margin: 0 }
+  tr:nth-child(odd) { background-color: red }
+  tr:nth-child(even) { background-color: black }
 }
 
 .field_with_errors {

@@ -1,33 +1,21 @@
-<h1>Welcome to Pull Request Roulette!</h1>
+<h1>Welcome to Pull Request Roulette (ALPHA)!</h1>
 
 <p>Below is a table of pull requests (or PRs) submitted for review, belonging
-to open-source projects hosted on Github.&nbsp; (User is the project owner, not
-the creator of the PR.)&nbsp; Click Open open it in a new tab or window.&nbsp;
-Click Take to commit to reviewing that PR.&nbsp;</p>
+to open-source projects hosted on Github.&nbsp; Click the PR to open it in a
+new tab or window.&nbsp; Click Take to commit to reviewing that PR.&nbsp;</p>
 
 <p>Please take this commitment seriously!&nbsp; It takes the PR out of the
 list, so nobody else can take it.&nbsp; If for whatever reason you can't review
 it in a timely manner, please put it back in the list.&nbsp; You can do this by
 submitting it just as if it were a brand-new submission.</p>
 
-<table>
+<table id="pr-list">
   <% if @pull_requests.any? %>
-    <thead>
-      <tr>
-        <th>User</th>
-        <th>Repo</th>
-        <th>Pull #</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <% @pull_requests.each do |pull_request| %>
-      <tbody>
+    <tbody>
+      <% @pull_requests.each do |pull_request| %>
         <tr>
-          <td><%= pull_request.user %></td>
-          <td><%= pull_request.repo %></td>
-          <td><%= pull_request.number %></td>
-          <td><%= link_to 'Open', pull_request.to_url, target: '_new' %></td>
+          <td><%= link_to("#{pull_request.user}/#{pull_request.repo}/#{pull_request.number}",
+                          pull_request.to_url, target: '_new') %></td>
           <td>
             <% if signed_in? %>
               <%= link_to 'Take', pull_request, method: :delete,
@@ -37,8 +25,8 @@ submitting it just as if it were a brand-new submission.</p>
             <% end %>
           </td>
         </tr>
-      </tbody>
-    <% end %>
+      <% end %>
+    </tbody>
   <% else %>
     <tbody>
       <tr>
