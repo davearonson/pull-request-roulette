@@ -1,22 +1,15 @@
 class PullRequestsController < ApplicationController
+  before_action :authorize, only: [:create, :destroy]
   helper_method :signed_in?
-  before_action :authorize, on: [:create, :destroy]
 
-  # TODO: extract authorization stuff to a before_action on new and destroy
-
-  # GET /pull_requests
-  # GET /pull_requests.json
   def index
     @pull_requests = PullRequest.all
   end
 
-  # GET /pull_requests/new
   def new
     @pull_request = PullRequest.new
   end
 
-  # POST /pull_requests
-  # POST /pull_requests.json
   def create
     @pull_request = PullRequest.from_url(params[:url])
 
@@ -31,8 +24,6 @@ class PullRequestsController < ApplicationController
     end
   end
 
-  # DELETE /pull_requests/1
-  # DELETE /pull_requests/1.json
   def destroy
     respond_to do |format|
       if signed_in?
@@ -54,7 +45,7 @@ class PullRequestsController < ApplicationController
                                     request.host_with_port,
                                     request.fullpath,
                                     '?',
-                                    request.params].join unless signed_in?
+                                    request.params.to_param].join unless signed_in?
   end
 
 end
