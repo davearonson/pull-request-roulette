@@ -1,32 +1,20 @@
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
 a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
+  color: #ccf;
+  &:visited { color: #ccc; }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    background-color: #f0f;
+    color: #0c0;
+    &:active { color: #0f0; }
   }
+}
+
+body {
+  background-color: green;
+  color: #fff;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 1em;
 }
 
 div {
@@ -35,8 +23,21 @@ div {
   }
 }
 
-#notice {
-  color: green;
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+table {
+  tbody {
+    tr:nth-child(odd) { background-color: red }
+    tr:nth-child(even) { background-color: black }
+  }
+  td { padding: 0.5em }
+  thead {
+    tr { background-color: #000 }
+  }
 }
 
 .field_with_errors {
@@ -45,13 +46,17 @@ div {
   display: table;
 }
 
+#notice {
+  color: green;
+}
+
 #error_explanation {
   width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #fff;
   h2 {
     text-align: left;
     font-weight: bold;
