@@ -1,9 +1,9 @@
 a {
-  color: #ccf;
-  &:visited { color: #ccc; }
+  color: white;
+  &:visited { color: white; }
   &:hover {
-    background-color: #f0f;
-    color: #0c0;
+    background-color: white;
+    color: green; 
     &:active { color: #0f0; }
   }
 }
@@ -12,10 +12,12 @@ body {
   background-color: green;
   color: #fff;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5em;
   padding: 1em;
-  max-width: 80em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 52em;
   min-width: 20em;
 }
 
@@ -29,23 +31,18 @@ h1 { line-height: 1.2em; }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
 }
 
 #pr-list {
   td {
+    font-size: 1.2em;
+    font-weight: bold;
     margin: 0;
     padding: 0.5em;
   }
   tr { margin: 0 }
   tr:nth-child(odd) { background-color: red }
   tr:nth-child(even) { background-color: black }
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
 }
 
 #notice {
@@ -63,14 +60,23 @@ p, ol, ul, td {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
-    font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
     background-color: #c00;
     color: #fff;
   }
   ul li {
-    font-size: 12px;
     list-style: square;
   }
+}
+
+#submit-link {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
 }
