@@ -1,5 +1,5 @@
 class PullRequestsController < ApplicationController
-  before_action :authorize, only: [:create, :destroy]
+  before_action :authorize, only: [:new, :destroy]
   helper_method :signed_in?
 
   def index
