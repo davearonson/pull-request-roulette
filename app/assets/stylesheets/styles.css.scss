@@ -1,9 +1,14 @@
+$first-stripe-color: red;
+$second-stripe-color: black;
+$main-bg-color: green;
+$text-color: white;
+
 a {
-  color: white;
-  &:visited { color: white; }
+  color: $text-color;
+  &:visited { color: $text-color; }
   &:hover {
-    background-color: white;
-    color: green; 
+    background-color: $text-color;
+    color: $main-bg-color; 
     &:active { color: #0f0; }
   }
 }
@@ -11,18 +16,18 @@ a {
 article {
   margin: 2em 0;
   h1 {
-    background: red;
+    background: $first-stripe-color;
     padding: 0.5em;
   }
   p {
-    background: black;
+    background: $second-stripe-color;
     padding: 0.5em;
   }
 }
 
 body {
-  background-color: green;
-  color: white;
+  background-color: $main-bg-color;
+  color: $text-color;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 12px;
   line-height: 1.5em;
@@ -53,12 +58,12 @@ p, ol, ul, td {
     padding: 0.5em;
   }
   tr { margin: 0 }
-  tr:nth-child(odd) { background-color: red }
-  tr:nth-child(even) { background-color: black }
+  tr:nth-child(odd) { background-color: $first-stripe-color }
+  tr:nth-child(even) { background-color: $second-stripe-color }
 }
 
 #notice {
-  color: white;
+  color: $text-color;
 }
 
 #error_explanation {
@@ -67,7 +72,7 @@ p, ol, ul, td {
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: white;
+  background-color: black;
   h2 {
     text-align: left;
     font-weight: bold;
@@ -78,7 +83,6 @@ p, ol, ul, td {
   }
   ul li {
     list-style: square;
-    color: red;
   }
 }
 
