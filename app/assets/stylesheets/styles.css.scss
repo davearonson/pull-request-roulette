@@ -1,15 +1,18 @@
 $first-stripe-color: #900;
 $second-stripe-color: black;
 $main-bg-color: #060;
-$text-color: white;
+$text-color: #eee;
 
 a {
-  color: $text-color;
-  &:visited { color: $text-color; }
+  color: $text-color - #111;
+  &:visited { color: $text-color - #222; }
   &:hover {
-    background-color: $text-color;
-    color: $main-bg-color; 
-    &:active { color: #0f0; }
+    background-color: $text-color - #444;
+    color: $main-bg-color;
+  }
+  &:active {
+    background-color: $text-color - #333;
+    color: $main-bg-color + #111; 
   }
 }
 
