@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: pullrequestroulette_test
   pool: 5
-  username: pullrequestroulette
+  username: postgres  # seems travis wants this, not pullrequestroulette
   password:
 
 production:
