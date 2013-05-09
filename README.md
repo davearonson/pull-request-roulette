@@ -3,7 +3,7 @@ pull-request-roulette
 
 [![Code Climate](https://codeclimate.com/github/davearonson/pull-request-roulette.png)](https://codeclimate.com/github/davearonson/pull-request-roulette)
 
-[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[davearonson]/[pull-request-roulette])
+[![Build Status](https://travis-ci.org/[davearonson]/[pull-request-roulette].png)](https://travis-ci.org/[davearonson]/[pull-request-roulette])
 
 
 Web app to match up developers, with public pull requests (PRs) on Github, with
