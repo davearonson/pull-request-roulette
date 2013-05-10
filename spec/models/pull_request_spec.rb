@@ -61,11 +61,6 @@ describe PullRequest do
           should == open_pr_parts
       end
 
-      it 'valid URLs w/o http or https' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', '')).
-          should == open_pr_parts
-      end
-
       it 'valid URLs w/ www' do
         PullRequest.parse_url(open_pr_url.gsub('https://', 'https://www.')).
           should == open_pr_parts
@@ -73,6 +68,16 @@ describe PullRequest do
 
       it 'valid URLs w/ www AND plain http' do
         PullRequest.parse_url(open_pr_url.gsub('https://', 'http://www.')).
+          should == open_pr_parts
+      end
+
+      it 'valid URLs w/o http or https' do
+        PullRequest.parse_url(open_pr_url.gsub('https://', '')).
+          should == open_pr_parts
+      end
+
+      it 'valid URLs w/o http or https AND w/ www' do
+        PullRequest.parse_url(open_pr_url.gsub('https://', 'www.')).
           should == open_pr_parts
       end
 
