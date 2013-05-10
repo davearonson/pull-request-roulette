@@ -38,6 +38,9 @@ describe 'submit a pr' do
     then_pr_is_not_in_system
   end
 
+  # NOTE: for tests of valid url formats,
+  # see spec/models/pull_request_spec.rb
+
 end
 
 private
@@ -48,16 +51,16 @@ private
 
 # WHENS
 
+def when_i_submit_bad_url
+  given_i_am_signed_in
+  # shouldn't get to the stage of finding
+  submit_url 'http://thisisspam.com/fake-viagra.html'
+end
+
 def when_i_submit_closed_pull
   given_i_am_signed_in
   stub_finding_pr 'closed'
   submit_url closed_pr_url
-end
-
-def when_i_submit_preexisting_pr
-  given_i_am_signed_in
-  given_an_existing_pr
-  submit_url @pr.to_url
 end
 
 def when_i_submit_merged_pull
@@ -78,10 +81,10 @@ def when_i_submit_open_pr
   submit_url open_pr_url
 end
 
-def when_i_submit_bad_url
+def when_i_submit_preexisting_pr
   given_i_am_signed_in
-  # shouldn't get to the stage of finding
-  submit_url 'http://thisisspam.com/fake-viagra.html'
+  given_an_existing_pr
+  submit_url @pr.to_url
 end
 
 # THENS
