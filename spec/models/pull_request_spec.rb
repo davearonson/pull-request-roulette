@@ -13,6 +13,7 @@ describe PullRequest do
   describe '#validate_open' do
 
     # NOTE:  NO MOCKING GITHUB IN HERE!  THESE ARE INTEGRATION TESTS!
+    # WARNING:  MAY EXCEED RATE LIMIT!  TODO: LOOK INTO DOING AUTH....
     describe 'looks at pull status' do
 
       it 'accepts open pulls' do
@@ -55,8 +56,13 @@ describe PullRequest do
         PullRequest.parse_url(open_pr_url).should == open_pr_parts
       end
 
-      it 'valid URLs w/o httpS' do
+      it 'valid URLs w/ plain http, not httpS' do
         PullRequest.parse_url(open_pr_url.gsub('https://', 'http://')).
+          should == open_pr_parts
+      end
+
+      it 'valid URLs w/o http or https' do
+        PullRequest.parse_url(open_pr_url.gsub('https://', '')).
           should == open_pr_parts
       end
 

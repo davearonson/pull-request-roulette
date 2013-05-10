@@ -15,7 +15,7 @@ class PullRequest < ActiveRecord::Base
 
   def self.parse_url url
     match_data = url_regex.match(url)
-    match_data[2..4] if match_data
+    match_data[3..5] if match_data
   end
 
   def to_url
@@ -27,7 +27,7 @@ class PullRequest < ActiveRecord::Base
   end
 
   def self.url_regex
-    /https?:\/\/(www\.)?github.com\/(.*)\/(.*)\/pull\/([0-9]+)\z/
+    /(https?:\/\/)?(www\.)?github.com\/(.*)\/(.*)\/pull\/([0-9]+)\z/
   end
 
   def validate_found
