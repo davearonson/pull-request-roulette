@@ -23,7 +23,7 @@ class PullRequest < ActiveRecord::Base
   end
 
   def self.url_format
-    'http://github.com/%s/%s/pull/%d'
+    'https://github.com/%s/%s/pull/%d'
   end
 
   def self.url_regex
