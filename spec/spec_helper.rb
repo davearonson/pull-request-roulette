@@ -61,6 +61,22 @@ end
 
 # OTHER
 
+def closed_pr_parts
+  ['davearonson', 'pull-request-roulette', '16']
+end
+
+def closed_pr_url
+  PullRequest.url_format % closed_pr_parts
+end
+
+def merged_pr_parts
+  ['davearonson', 'pull-request-roulette', '15']
+end
+
+def merged_pr_url
+  PullRequest.url_format % merged_pr_parts
+end
+
 def open_pr_parts
   ['davearonson', 'pull-request-roulette', '14']
 end

@@ -109,22 +109,6 @@ end
 
 # HELPERS
 
-def closed_pr_parts
-  ['davearonson', 'pull-request-roulette', '16']
-end
-
-def closed_pr_url
-  PullRequest.url_format % closed_pr_parts
-end
-
-def merged_pr_parts
-  ['davearonson', 'pull-request-roulette', '15']
-end
-
-def merged_pr_url
-  PullRequest.url_format % merged_pr_parts
-end
-
 def msg_for_could_not_save
   'prohibited this pull_request from being saved'
 end
