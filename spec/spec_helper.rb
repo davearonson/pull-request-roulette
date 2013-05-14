@@ -50,13 +50,15 @@ end
 
 def given_an_existing_pr
   stub_finding_pr 'open'
-  @pr = PullRequest.from_url(open_pr_url)
+  @pr = PullRequest.from_url(url: open_pr_url, submitter: test_user_handle)
   @pr.save!
 end
 
-def given_i_am_signed_in
+def given_i_am_signed_in handle = test_user_handle 
+  @user_handle = handle
   PullRequestsController.any_instance.stub(:authorize)
   PullRequestsController.any_instance.stub(:signed_in?) { true }
+  PullRequestsController.any_instance.stub(:current_user_handle) { handle }
 end
 
 # OTHER
@@ -87,4 +89,8 @@ end
 
 def stub_finding_pr state=open
   PullRequest.any_instance.stub(:fetch_pr_data) { OpenStruct.new(state: state) }
+end
+
+def test_user_handle
+  'J-Random-User'
 end

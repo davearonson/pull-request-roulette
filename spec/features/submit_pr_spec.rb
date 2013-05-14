@@ -6,6 +6,7 @@ describe 'submit a pr' do
     when_i_submit_open_pr
     then_i_should_not_get_error_message
     then_pr_is_in_system
+    then_i_should_be_its_submitter
   end
 
   it 'rejects bad URLs' do
@@ -76,7 +77,7 @@ def when_i_submit_nonextant_pull
 end
 
 def when_i_submit_open_pr
-  given_i_am_signed_in
+  given_i_am_signed_in "#{test_user_handle}-As-Submitter"
   stub_finding_pr 'open'
   submit_url open_pr_url
 end
@@ -88,6 +89,10 @@ def when_i_submit_preexisting_pr
 end
 
 # THENS
+
+def then_i_should_be_its_submitter
+  page.should have_content @user_handle
+end
 
 def then_i_should_get_error_message msg=nil
   page.should have_content msg_for_could_not_save

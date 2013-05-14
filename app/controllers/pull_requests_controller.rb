@@ -11,8 +11,8 @@ class PullRequestsController < ApplicationController
   end
 
   def create
-    @pull_request = PullRequest.from_url(params[:url])
-
+    @pull_request = PullRequest.from_url(url: params[:url],
+                                         submitter: current_user_handle)
     respond_to do |format|
       if @pull_request.save
         format.html { redirect_to pull_requests_path, notice: 'Pull request was successfully created.' }

@@ -1,5 +1,5 @@
-<% if session[:auth_code] %>
-  Signed in via Github as <%= session[:login] %> (<%= session[:name] %>) --
+<% if signed_in? %>
+  Signed in via Github as <%= current_user_handle %> (<%= current_user_name %>) --
   <%= link_to('Sign Out', sign_out_path) %>
 <% else %>
   Signed out

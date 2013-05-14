@@ -8,9 +8,9 @@ class PullRequest < ActiveRecord::Base
   validate :validate_found
   validate :validate_open
 
-  def self.from_url url
-    user, repo, number = self.parse_url url
-    new user: user, repo: repo, number: number
+  def self.from_url options
+    user, repo, number = self.parse_url options[:url]
+    new user: user, repo: repo, number: number, submitter: options[:submitter]
   end
 
   def self.parse_url url
