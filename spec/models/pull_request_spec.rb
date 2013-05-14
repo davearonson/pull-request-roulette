@@ -5,7 +5,7 @@ describe PullRequest do
   describe '.from_url' do
 
     it 'accepts open pulls' do
-        PullRequest.from_url(open_pr_url).should be_valid
+        PullRequest.from_url(url: open_pr_url, submitter: 'some-handle').should be_valid
     end
 
   end
@@ -106,7 +106,7 @@ end
 private
 
 def test_pr_validations(url, found, open, errors)
-  pr = PullRequest.from_url(url)
+  pr = PullRequest.from_url(url: url, submitter: 'some-handle')
   pr.validate_found.should == found
   pr.validate_open.should == open
   pr.errors[:base].empty?.should_not == errors
