@@ -7,6 +7,7 @@ describe 'submit a pr' do
     then_i_should_not_get_error_message
     then_pr_is_in_system
     then_i_should_be_its_submitter
+    then_its_author_should_be_listed
   end
 
   it 'rejects bad URLs' do
@@ -60,13 +61,13 @@ end
 
 def when_i_submit_closed_pull
   given_i_am_signed_in
-  stub_finding_pr 'closed'
+  stub_finding_pr state: 'closed'
   submit_url closed_pr_url
 end
 
 def when_i_submit_merged_pull
   given_i_am_signed_in
-  stub_finding_pr 'merged'
+  stub_finding_pr state: 'merged'
   submit_url merged_pr_url
 end
 
@@ -78,7 +79,8 @@ end
 
 def when_i_submit_open_pr
   given_i_am_signed_in "#{test_user_handle}-As-Submitter"
-  stub_finding_pr 'open'
+  @author = "#{test_user_handle}-As-Author"
+  stub_finding_pr state: 'open', author: @author
   submit_url open_pr_url
 end
 
@@ -105,6 +107,10 @@ def then_i_should_not_get_error_message
   page.should have_content msg_for_could_save
 end
 
+def then_its_author_should_be_listed
+  page.should have_content @author
+end
+
 def then_pr_is_in_system
   user, repo, number = PullRequest.parse_url @pr_url
   PullRequest.where(user: user).where(repo: repo).where(number: number).count.should == 1
@@ -128,6 +134,6 @@ end
 def submit_url url
   visit new_pull_request_path
   @pr_url = url
-  fill_in 'url', with: @pr_url
+  fill_in 'url', with: url
   click_on 'Create Pull request'
 end

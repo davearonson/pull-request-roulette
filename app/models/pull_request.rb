@@ -1,21 +1,53 @@
 class PullRequest < ActiveRecord::Base
 
-  # ORDER IS IMPORTANT!  url_parsed verifies presence of stuff needed for the rest.
-  # found retrieves the PR, and open checks its state
-  validate :validate_url_parsed
-  validates_numericality_of :number, greater_than: 0, only_integer: true
-  validates_uniqueness_of :number, scope: [:user, :repo], message: 'not unique; that pull request is already listed'
-  validate :validate_found
-  validate :validate_open
+  validate :legit?
+
+  def found?
+    @pr_data = fetch_pr_data
+    return true if @pr_data
+    errors[:base] << 'That pull request was not found on Github'
+    false
+  end
 
   def self.from_url options
     user, repo, number = self.parse_url options[:url]
     new user: user, repo: repo, number: number, submitter: options[:submitter]
   end
 
+  def known?
+    if PullRequest.where(user: user).
+                   where(repo: repo).
+                   where(number: number).any?
+      errors[:base] << 'That pull request is already listed'
+      return true
+    end
+    false
+  end
+
+  # do this so the things can be retrieved in the right order
+  def legit?
+    return false unless url_parsed?
+    return false if known?
+    return false unless found?
+    return false unless open?
+    set_author
+    true
+  end
+
+  def open?
+    return false unless @pr_data
+    return true if @pr_data.state == 'open'
+    errors[:base] << "That pull request is not open, it is #{@pr_data.state}"
+    false
+  end
+
   def self.parse_url url
     match_data = url_regex.match(url)
     match_data[3..5] if match_data
+  end
+
+  def set_author
+    self.author = @pr_data.user.login
   end
 
   def to_url
@@ -26,36 +58,14 @@ class PullRequest < ActiveRecord::Base
     'https://github.com/%s/%s/pull/%d'
   end
 
+  def url_parsed?
+    return true if user && repo && number
+    errors[:base] << 'That is not a valid Github pull request URL'
+    false
+  end
+
   def self.url_regex
     /(https?:\/\/)?(www\.)?github.com\/(.*)\/(.*)\/pull\/([0-9]+)\z/
-  end
-
-  def validate_found
-    return false if errors[:base].any?
-    @pr_data = fetch_pr_data
-    if ! @pr_data
-      errors[:base] << 'That pull request was not found on Github'
-      return false
-    end
-    true
-  end
-
-  def validate_open
-    return false if ! @pr_data
-    if @pr_data.state != 'open'
-      errors[:base] << "That pull request is not open, it is #{@pr_data.state}"
-      return false
-    end
-    true
-  end
-
-  # just to provide a bit clearer feedback
-  def validate_url_parsed
-    if ! (user && repo && number)
-      errors[:base] << 'That is not a valid Github pull request URL'
-      return false
-    end
-    true
   end
 
   private
@@ -70,4 +80,3 @@ class PullRequest < ActiveRecord::Base
   end
 
 end
-  

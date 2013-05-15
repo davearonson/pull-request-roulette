@@ -26,7 +26,7 @@ def then_i_am_told_about_it
 end
 
 def when_i_take_it
-  stub_finding_pr 'open'
+  stub_finding_pr state: 'open'
   click_on "take-#{@pr.id}"
 end
 

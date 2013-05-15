@@ -49,7 +49,7 @@ end
 # GIVENS
 
 def given_an_existing_pr
-  stub_finding_pr 'open'
+  stub_finding_pr state: 'open'
   @pr = PullRequest.from_url(url: open_pr_url, submitter: test_user_handle)
   @pr.save!
 end
@@ -87,8 +87,10 @@ def open_pr_url
   PullRequest.url_format % open_pr_parts
 end
 
-def stub_finding_pr state=open
-  PullRequest.any_instance.stub(:fetch_pr_data) { OpenStruct.new(state: state) }
+def stub_finding_pr args = {}
+  options = args.reverse_merge({ state: 'open', author: test_user_handle })
+  PullRequest.any_instance.stub(:fetch_pr_data) { OpenStruct.new(state: options[:state],
+                                                                 user: OpenStruct.new(login: options[:author])) }
 end
 
 def test_user_handle

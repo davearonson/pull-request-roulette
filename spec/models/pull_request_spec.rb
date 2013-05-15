@@ -10,7 +10,7 @@ describe PullRequest do
 
   end
 
-  describe '#validate_open' do
+  describe '#open?' do
 
     # NOTE:  NO MOCKING GITHUB IN HERE!  THESE ARE INTEGRATION TESTS!
     # WARNING:  MAY EXCEED RATE LIMIT!  TODO: LOOK INTO DOING AUTH....
@@ -107,7 +107,7 @@ private
 
 def test_pr_validations(url, found, open, errors)
   pr = PullRequest.from_url(url: url, submitter: 'some-handle')
-  pr.validate_found.should == found
-  pr.validate_open.should == open
+  pr.found?.should == found
+  pr.open?.should == open
   pr.errors[:base].empty?.should_not == errors
 end
