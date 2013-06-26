@@ -40,7 +40,15 @@
   </nav>
 
   <div class="row">
-    <div class="small-9 columns"><%= yield %></div>
+    <div class="small-9 columns">
+      <% flash.each do |key, value| %>
+	<div data-alert class="alert-box radius <%= key %>">
+          <%= value %>
+          <a href="#" class="close">&times;</a>
+ 	</div>
+     <% end %>
+	<%= yield %>
+    </div>
     <div class="small-3 columns">
       <h2 class="subheader">About</h2>
       <p>On this site there is a list of pull requests (or PRs) submitted for review, belonging
