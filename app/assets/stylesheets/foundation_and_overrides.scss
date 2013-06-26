@@ -1269,28 +1269,8 @@ $default-float: left;
 
 // $topbar-sticky-class: ".sticky";
 
-@import
-  "foundation/components/global",
-  "foundation/components/grid",
-  "foundation/components/visibility",
-  "foundation/components/block-grid",
-  "foundation/components/type",
-  "foundation/components/buttons",
-  "foundation/components/forms",
-  "foundation/components/custom-forms",
-  "foundation/components/dropdown-buttons",
-  "foundation/components/section",
-  "foundation/components/top-bar",
-  "foundation/components/clearing",
-  "foundation/components/alert-boxes",
-  "foundation/components/labels",
-  "foundation/components/inline-lists",
-  "foundation/components/panels",
-  "foundation/components/sub-nav",
-  "foundation/components/tables",
-  "foundation/components/thumbs",
-  "foundation/components/tooltips",
-  "foundation/components/dropdown";
+@import "foundation";
+
 
 article {
 	@include panel;
