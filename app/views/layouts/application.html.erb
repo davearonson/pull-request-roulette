@@ -1,18 +1,72 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>PullRequestRoulette</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
 
-<p id="notice"><%= notice %></p>
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-<%= render 'layouts/log_in_out' %>
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+  	<title><%= content_for?(:title) ? yield(:title) : "Pull Request Roulette" %></title>
 
-</body>
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to "Pull Request Roulette", root_url %></a></h1>
+      </li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li class="divider"></li>
+        <li><%= link_to "Submit Pull Request", new_pull_request_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "News", news_path %></li>
+        <li class="divider"></li>
+        <li class="has-form"><%= render 'layouts/log_in_out' %></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <div class="small-9 columns"><%= yield %></div>
+    <div class="small-3 columns">
+      <h2 class="subheader">About</h2>
+      <p>On this site there is a list of pull requests (or PRs) submitted for review, belonging
+        to open-source projects hosted on <%= link_to('Github', 'https://github.com',
+        target: '_new') %>.&nbsp; Click the PR to open it in a new tab or window.&nbsp;
+        Click Take to commit to reviewing that PR.</p>
+
+        <p>Please take this commitment seriously!&nbsp; It takes the PR out of the
+        list, so nobody else can take it.&nbsp; If for whatever reason you can't review
+        it in a timely manner, please put it back in the list.&nbsp; You can do this by
+        submitting it just as if it were a brand-new submission.</p>
+
+        <p>This is a public service of <%= link_to('Codosaurus, LLC',
+        'http://www.codosaur.us', target: '_new') %>.&nbsp; See <%=
+        link_to('https://github.com/davearonson/pull-request-roulette',
+                'https://github.com/davearonson/pull-request-roulette', target: '_new')
+        %> for more information, such as planned features.&nbsp; Please read the
+        README, browse the issues, and suggest more features.</p>
+    </div>
+  </div>
+  <% if signed_in? %>
+   <ul id="drop" data-dropdown-content class="f-dropdown">
+    <li><%= link_to('Sign Out', sign_out_path) %></li>
+  </ul>
+ <% end %>
+    
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
