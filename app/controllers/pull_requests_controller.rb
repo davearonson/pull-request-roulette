@@ -15,7 +15,7 @@ class PullRequestsController < ApplicationController
                                          submitter: current_user_handle)
     respond_to do |format|
       if @pull_request.save
-        format.html { redirect_to pull_requests_path, notice: 'Pull request was successfully created.' }
+        format.html { redirect_to pull_requests_path, flash: { success: 'Pull request was successfully created.' } } 
         format.json { render action: 'show', status: :created, location: @pull_request }
       else
         format.html { render action: 'new' }
@@ -32,7 +32,7 @@ class PullRequestsController < ApplicationController
         format.html { redirect_to pull_requests_url }
         format.json { head :no_content }
       else
-        format.html { redirect_to pull_requests_url, notice: 'You must be logged in to Take a PR!' }
+        format.html { redirect_to pull_requests_url, flash: { alert: 'You must be logged in to take a pull request' }  }
         format.json { render json: @pull_request.errors, status: :unprocessable_entity }
       end
     end

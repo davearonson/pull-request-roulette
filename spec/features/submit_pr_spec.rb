@@ -124,7 +124,7 @@ end
 # HELPERS
 
 def msg_for_could_not_save
-  'prohibited this pull_request from being saved'
+  'prohibited this pull request from being saved'
 end
 
 def msg_for_could_save

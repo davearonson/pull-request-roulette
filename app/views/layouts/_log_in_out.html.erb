@@ -1,7 +1,10 @@
 <% if signed_in? %>
-  Signed in via Github as <%= current_user_handle %> (<%= current_user_name %>) --
-  <%= link_to('Sign Out', sign_out_path) %>
+	<a href="#" class="button radius" data-dropdown="drop">
+   		<%= current_user_handle %> (<%= current_user_name %>)
+  	</a>
 <% else %>
-  Signed out
+	<a href="#" class="button radius dropdown" data-dropdown="drop">
+   		Signed out
+  	</a>
 <% end %>
-<br/>
+
