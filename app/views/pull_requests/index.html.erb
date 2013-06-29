@@ -1,7 +1,7 @@
-<h1>Welcome to Pull Request Roulette (ALPHA)!</h1>
+<h1 class="header">Welcome to Pull Request Roulette</h1>
 
 <p><%= link_to('Submit a New Pull Request', new_pull_request_path,
-               id: 'submit-link') %></p>
+               id: 'submit-link', class: 'button success radius' ) %></p>
 
 <table id="pr-list">
   <% if @pull_requests.any? %>
@@ -46,26 +46,3 @@
     </tbody>
   <% end%>
 </table>
-
-<p>Above is a list of pull requests (or PRs) submitted for review, belonging
-to open-source projects hosted on <%= link_to('Github', 'https://github.com',
-target: '_new') %>.&nbsp; Click the PR to open it in a new tab or window.&nbsp;
-Click Take to commit to reviewing that PR.</p>
-
-<p>Please take this commitment seriously!&nbsp; It takes the PR out of the
-list, so nobody else can take it.&nbsp; If for whatever reason you can't review
-it in a timely manner, please put it back in the list.&nbsp; You can do this by
-submitting it just as if it were a brand-new submission.</p>
-
-<p>This is a public service of <%= link_to('Codosaurus, LLC',
-'http://www.codosaur.us', target: '_new') %>.&nbsp; See <%=
-link_to('https://github.com/davearonson/pull-request-roulette',
-        'https://github.com/davearonson/pull-request-roulette', target: '_new')
-%> for more information, such as planned features.&nbsp; Please read the
-README, browse the issues, and suggest more features.</p>
-
-<p>Note:&nbsp; Yes, I know, it looks like trash.&nbsp; This is just the MVP,
-which hasn't been styled much.&nbsp; Even as I improve it, I'll be focusing
-mainly on the functionality; feel free to lend me a hand with the looks.</p>
-
-<p><%= link_to('Latest News', news_path) %></p>
