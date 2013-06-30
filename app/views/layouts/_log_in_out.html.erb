@@ -3,8 +3,6 @@
    		<%= current_user_handle %> (<%= current_user_name %>)
   	</a>
 <% else %>
-	<a href="#" class="button radius dropdown" data-dropdown="drop">
-   		Signed out
-  	</a>
+	<%= link_to "Sign In", sign_in_path, class: "button radius" %>
 <% end %>
 
