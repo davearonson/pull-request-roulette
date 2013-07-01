@@ -3,7 +3,7 @@ ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '4.0.0'
 
 gem 'omniauth'
 gem 'omniauth-github'
@@ -17,10 +17,13 @@ group :development do
 end
 
 group :test, :development do
+  gem 'better_errors'
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
   gem 'launchy'
+  gem 'pry'
+  gem 'pry-debugger'
   gem 'rspec-rails'
 end
 
@@ -32,8 +35,8 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   #   gem 'therubyracer', platforms: :ruby

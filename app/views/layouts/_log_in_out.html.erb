@@ -1,10 +1,8 @@
 <% if signed_in? %>
-	<a href="#" class="button radius" data-dropdown="drop">
-   		<%= current_user_handle %> (<%= current_user_name %>)
-  	</a>
+  <span class="button radius" data-dropdown="drop">
+    <%= "On Github as #{current_user_handle} (#{current_user_name})" %>
+  </span>
 <% else %>
-	<a href="#" class="button radius dropdown" data-dropdown="drop">
-   		Signed out
-  	</a>
+  <%= link_to("Sign in via Github", sign_in_path(return_to: request.url), class: "button radius", 'data-no-turbolink' => true) %>
 <% end %>
 

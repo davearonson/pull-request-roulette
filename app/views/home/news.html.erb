@@ -2,6 +2,37 @@
 
 <article>
 
+  <h1>2013-06-30: Publicity, better UI, OAuth fix....</h1>
+
+  <p>First, I decided to publicize it a bit more widely.&nbsp; It got a huge
+  boost from being mentioned on <%= link_to('the Ruby5 podcast',
+  'http://ruby5.envylabs.com/', target: '_new') %>, and also <%=
+  link_to('Status Code', 'http://statuscode.org/', target: '_new') %>.</p>
+
+  <p>One person who then found it, <%= link_to('Matthew Burket',
+  'https://github.com/Mab879', target: '_new') %> did exactly as <%=
+  link_to('Ruby5', 'http://ruby5.envylabs.com/', target: '_new') %> suggested:
+  put together a pull-request to give PRR a much-needed facelift, and submitted
+  it not only to <%= link_to("the PRR Github repo",
+  'https://github.com/davearonson/pull-request-roulette', target: '_new') %>,
+  but also to PRR itself.&nbsp; The timing and choice of framework were
+  perfect, as I've been intending to check out the light-weight <%=
+  link_to('Zurb Foundation', 'http://foundation.zurb.com/', target: '_new') %>
+  (at least, compared to <%= link_to('Twitter Bootstrap',
+  'http://twitter.github.io/bootstrap/', target: '_new') %>), which he
+  used.</p>
+
+  <p>He also submitted a PR to add a sign-in button, but it didn't work...
+  but it's not his fault.&nbsp; It didn't work because my OAuth setup was
+  basically broken, except for in a before_filter.&nbsp; So, while he gets
+  credit for at least adding that little button, I then did a bunch of fixing
+  and rearranging to make OAuth logins work right.&nbsp; (And a little
+  clearer.)</p>
+
+</article>
+
+<article>
+
   <h1>2013-05-05: Yup, sure enough, <%= link_to('OAuth', 'http://oauth.net/',
   target: '_new') %> problems....</h1>
 

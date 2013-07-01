@@ -1,7 +1,9 @@
 <h1 class="header">Welcome to Pull Request Roulette</h1>
 
-<p><%= link_to('Submit a New Pull Request', new_pull_request_path,
-               id: 'submit-link', class: 'button success radius' ) %></p>
+<% if signed_in? %>
+  <%= link_to('Submit a New Pull Request', new_pull_request_path,
+              id: 'submit-link', class: 'button success radius' ) %>
+<% end %>
 
 <table id="pr-list">
   <% if @pull_requests.any? %>
@@ -10,7 +12,9 @@
         <th>URL</th>
         <th>Author</th>
         <th>Submitter</th>
-        <th></th>
+        <% if signed_in? %>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -24,14 +28,12 @@
           <td><%= link_to("#{pull_request.submitter}",
                           github_user_url(pull_request.submitter),
                           target: '_new') %></td>
-          <td>
-            <% if signed_in? %>
+          <% if signed_in? %>
+            <td>
               <%= link_to 'Take', pull_request, method: :delete,
                 data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %>
-            <% else %>
-              <%= link_to 'Sign in to take', sign_in_path %>
-            <% end %>
-          </td>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

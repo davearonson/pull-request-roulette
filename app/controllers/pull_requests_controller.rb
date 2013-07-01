@@ -26,26 +26,17 @@ class PullRequestsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if signed_in?
-        @pull_request = PullRequest.find(params[:id])
-        @pull_request.destroy
-        format.html { redirect_to pull_requests_url }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to pull_requests_url, flash: { alert: 'You must be logged in to take a pull request' }  }
-        format.json { render json: @pull_request.errors, status: :unprocessable_entity }
-      end
+      @pull_request = PullRequest.find(params[:id])
+      @pull_request.destroy
+      format.html { redirect_to pull_requests_url }
+      format.json { head :no_content }
     end
   end
 
   private
 
   def authorize
-    authorize_github_and_return_to [request.protocol,
-                                    request.host_with_port,
-                                    request.fullpath,
-                                    '?',
-                                    request.params.to_param].join unless signed_in?
+    authorize_github_and_return_to request.url unless signed_in?
   end
 
 end
