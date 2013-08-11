@@ -23,34 +23,34 @@
   </head>
 
   <body>
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to "Pull Request Roulette", root_url %></h1>
-      </li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li class="divider"></li>
-        <li><%= link_to "News", news_path %></li>
-        <li class="divider"></li>
-        <li class="has-form"><%= render 'layouts/log_in_out' %></li>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Pull Request Roulette", root_url %></h1>
+        </li>
       </ul>
-    </section>
-  </nav>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
+          <li><%= link_to "News", news_path %></li>
+          <li class="divider"></li>
+          <li class="has-form"><%= render 'layouts/log_in_out' %></li>
+        </ul>
+      </section>
+    </nav>
 
-  <div class="row">
-    <div class="large-9 columns">
-      <% flash.each do |key, value| %>
-        <div data-alert class="alert-box radius <%= key %>">
-          <%= value %>
-          <a href="#" class="close">&times;</a>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
-    <div class="large-3 columns">
-      <h2 class="subheader">About</h2>
+    <div class="row">
+      <div class="large-9 columns">
+        <% flash.each do |key, value| %>
+          <div data-alert class="alert-box radius <%= key %>">
+            <%= value %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <div class="large-3 columns">
+        <h2 class="subheader">About</h2>
 
         <p>On this site there is a list of pull requests (or PRs) submitted for
         review, belonging to open-source projects hosted on <%=
@@ -71,14 +71,17 @@
                 target: '_new') %> for more information, such as planned
         features.&nbsp; Please read the README, browse the issues, and suggest
         more features.</p>
+
+      </div>
     </div>
-  </div>
-  <% if signed_in? %>
-   <ul id="drop" data-dropdown-content class="f-dropdown">
-    <li><%= link_to('Sign Out', sign_out_path) %></li>
-  </ul>
- <% end %>
-    
+
+    <% if signed_in? %>
+     <ul id="drop" data-dropdown-content class="f-dropdown">
+      <li><%= link_to('Sign Out', sign_out_path) %></li>
+     </ul>
+    <% end %>
+      
     <%= javascript_include_tag "application" %>
+
   </body>
 </html>
