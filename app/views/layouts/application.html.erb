@@ -38,7 +38,7 @@
   </nav>
 
   <div class="row">
-    <div class="small-9 columns">
+    <div class="large-9 columns">
       <% flash.each do |key, value| %>
 	<div data-alert class="alert-box radius <%= key %>">
           <%= value %>
@@ -47,7 +47,7 @@
      <% end %>
 	<%= yield %>
     </div>
-    <div class="small-3 columns">
+    <div class="large-3 columns">
       <h2 class="subheader">About</h2>
       <p>On this site there is a list of pull requests (or PRs) submitted for review, belonging
         to open-source projects hosted on <%= link_to('Github', 'https://github.com',
