@@ -5,18 +5,20 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
-  	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+    <!-- Uncomment to make IE8 render like IE7 -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Pull Request Roulette" %></title>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : "Pull Request Roulette" %>
+    </title>
 
-  	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -40,31 +42,35 @@
   <div class="row">
     <div class="large-9 columns">
       <% flash.each do |key, value| %>
-	<div data-alert class="alert-box radius <%= key %>">
+        <div data-alert class="alert-box radius <%= key %>">
           <%= value %>
           <a href="#" class="close">&times;</a>
- 	</div>
-     <% end %>
-	<%= yield %>
+        </div>
+      <% end %>
+      <%= yield %>
     </div>
     <div class="large-3 columns">
       <h2 class="subheader">About</h2>
-      <p>On this site there is a list of pull requests (or PRs) submitted for review, belonging
-        to open-source projects hosted on <%= link_to('Github', 'https://github.com',
-        target: '_new') %>.&nbsp; Click the PR to open it in a new tab or window.&nbsp;
-        Click Take (when logged in) to commit to reviewing that PR.</p>
 
-        <p>Please take this commitment seriously!&nbsp; It takes the PR out of the
-        list, so nobody else can take it.&nbsp; If for whatever reason you can't review
-        it in a timely manner, please put it back in the list.&nbsp; You can do this by
-        submitting it just as if it were a brand-new submission.</p>
+        <p>On this site there is a list of pull requests (or PRs) submitted for
+        review, belonging to open-source projects hosted on <%=
+        link_to('Github', 'https://github.com', target: '_new') %>.&nbsp; Click
+        the PR to open it in a new tab or window.&nbsp; Click Take (when logged
+        in) to commit to reviewing that PR.</p>
+
+        <p>Please take this commitment seriously!&nbsp; It takes the PR out of
+        the list, so nobody else can take it.&nbsp; If for whatever reason you
+        can't review it in a timely manner, please put it back in the
+        list.&nbsp; You can do this by submitting it just as if it were a
+        brand-new submission.</p>
 
         <p>This is a public service of <%= link_to('Codosaurus, LLC',
         'http://www.codosaur.us', target: '_new') %>.&nbsp; See <%=
         link_to('https://github.com/davearonson/pull-request-roulette',
-                'https://github.com/davearonson/pull-request-roulette', target: '_new')
-        %> for more information, such as planned features.&nbsp; Please read the
-        README, browse the issues, and suggest more features.</p>
+                'https://github.com/davearonson/pull-request-roulette',
+                target: '_new') %> for more information, such as planned
+        features.&nbsp; Please read the README, browse the issues, and suggest
+        more features.</p>
     </div>
   </div>
   <% if signed_in? %>
