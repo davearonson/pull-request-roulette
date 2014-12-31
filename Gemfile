@@ -21,7 +21,7 @@ group :test, :development do
   gem 'capybara-webkit'
   gem 'launchy'
   gem 'pry'
-  gem 'pry-debugger'
+  gem 'byebug'
   gem 'rspec-rails'
 end
 
