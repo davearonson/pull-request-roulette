@@ -8,7 +8,7 @@ module ApplicationHelper
     session[:name]
   end
 
-  def github_user_url handle
+  def github_user_url(handle)
     "https://github.com/#{handle}"
   end
 

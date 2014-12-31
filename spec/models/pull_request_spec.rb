@@ -18,38 +18,38 @@ describe PullRequest do
     describe 'looks at pull status' do
 
       it 'accepts open pulls' do
-        test_pr_validations(open_pr_url, true, true, false)
+        test_pr_validations(open_pr_url, found: true, open: true, errors: false)
       end
 
       it 'rejects closed but unmerged pulls' do
-        test_pr_validations(closed_pr_url, true, false, true)
+        test_pr_validations(closed_pr_url, found: true, open: false, errors: true)
       end
 
       it 'rejects merged pulls' do
-        test_pr_validations(merged_pr_url, true, false, true)
+        test_pr_validations(merged_pr_url, found: true, open: false, errors: true)
       end
 
       it 'rejects nonexistent pulls' do
         test_pr_validations(open_pr_url.gsub('14', 'url: 999999999'),
-                            false, false, true)
+                            found: false, open: false, errors: true)
       end
 
       it 'rejects pulls on nonextant repos' do
         test_pr_validations(open_pr_url.gsub('davearonson',
                                              'There-Better-Be-No-Such-User'),
-                            false, false, true)
+                            found: false, open: false, errors: true)
       end
 
       it 'rejects pulls on things not even at Github' do
-        test_pr_validations(open_pr_url.gsub('github','bughit'),
-                            false, false, true)
+        test_pr_validations(open_pr_url.gsub('github', 'bughit'),
+                            found: false, open: false, errors: true)
       end
 
     end
 
   end
 
-  describe ".parse_url" do
+  describe '.parse_url' do
 
     describe 'parses' do
 
@@ -102,16 +102,15 @@ describe PullRequest do
       end
     end
 
-
   end
 
 end
 
 private
 
-def test_pr_validations(url, found, open, errors)
+def test_pr_validations(url, options)
   pr = PullRequest.from_url(url: url, submitter: 'some-handle')
-  expect(pr.found?).to eq found
-  expect(pr.open?).to eq open
-  expect(pr.errors[:base].empty?).not_to eq errors
+  expect(pr.found?).to eq options[:found]
+  expect(pr.open?).to eq options[:open]
+  expect(pr.errors[:base].empty?).not_to eq options[:errors]
 end

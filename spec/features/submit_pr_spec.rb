@@ -96,7 +96,7 @@ def then_i_should_be_its_submitter
   expect(page).to have_content @user_handle
 end
 
-def then_i_should_get_error_message msg=nil
+def then_i_should_get_error_message(msg = nil)
   expect(page).to have_content msg_for_could_not_save
   expect(page).to have_content(msg) if msg.present?
   expect(page).not_to have_content msg_for_could_save
@@ -134,7 +134,7 @@ def msg_for_could_save
   'was successfully created'
 end
 
-def submit_url url
+def submit_url(url)
   visit new_pull_request_path
   @pr_url = url
   fill_in 'url', with: url

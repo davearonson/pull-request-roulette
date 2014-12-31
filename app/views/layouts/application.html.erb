@@ -76,11 +76,11 @@
     </div>
 
     <% if signed_in? %>
-     <ul id="drop" data-dropdown-content class="f-dropdown">
-      <li><%= link_to('Sign Out', sign_out_path) %></li>
-     </ul>
+      <ul id="drop" data-dropdown-content class="f-dropdown">
+        <li><%= link_to('Sign Out', sign_out_path) %></li>
+      </ul>
     <% end %>
-      
+
     <%= javascript_include_tag "application" %>
 
   </body>

@@ -1,0 +1,6 @@
+rules:
+  ignore:
+    # i use curlies when using the *value* of the block
+  - avoid_using_curly_braces_for_multi-line_blocks    
+  - missing_class_documentation
+  - missing_method_documentation

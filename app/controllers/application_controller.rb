@@ -5,12 +5,11 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
-  def authorize_github_and_return_to final_url
+  def authorize_github_and_return_to(final_url)
     github = Github.new(client_id: ENV['GITHUB_KEY'],
                         client_secret: ENV['GITHUB_SECRET'])
-    redirect_uri = oauth_callback_url(:github, final_url: final_url)
-    auth_address = github.authorize_url(redirect_uri: redirect_uri)
-    redirect_to auth_address
+    session[:redirect_url] = final_url
+    redirect_to github.authorize_url
   end
 
 end

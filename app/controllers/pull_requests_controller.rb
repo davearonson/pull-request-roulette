@@ -15,11 +15,14 @@ class PullRequestsController < ApplicationController
                                          submitter: current_user_handle)
     respond_to do |format|
       if @pull_request.save
-        format.html { redirect_to pull_requests_path, flash: { success: 'Pull request was successfully created.' } } 
-        format.json { render action: 'show', status: :created, location: @pull_request }
+        format.html { redirect_to pull_requests_path,
+                      flash: { success: 'Pull request was successfully created.' } }
+        format.json { render action: 'show', status: :created,
+                      location: @pull_request }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @pull_request.errors, status: :unprocessable_entity }
+        format.html { render 'new' }
+        format.json { render json: @pull_request.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

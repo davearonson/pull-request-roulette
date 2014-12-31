@@ -11,10 +11,10 @@ describe 'log in' do
     # GIVING UP HERE, because of extreme difficulty
     # of testing external redirects!  :-<
 
-    #then_i_am_redirected_to_github_login_page
-    #when_i_submit_valid_credentials
-    #then_i_am_logged_in
-    #then_i_am_at_new_pr_page
+    # then_i_am_redirected_to_github_login_page
+    # when_i_submit_valid_credentials
+    # then_i_am_logged_in
+    # then_i_am_at_new_pr_page
   end
 
   # don't bother testing submission of invalid creds;
@@ -49,8 +49,5 @@ end
 
 def then_i_am_redirected_to_github_login_page
   loc = 'https://github.com/login?'
-  puts
-  puts current_url
-  puts
   expect(current_url.index(loc)).not_to eq == 0
 end

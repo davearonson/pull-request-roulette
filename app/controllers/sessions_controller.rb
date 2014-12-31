@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
 
   def new
-    authorize_github_and_return_to params.fetch(:return_to, root_url)
+    referer = request.referer
+    authorize_github_and_return_to referer.present? ? referer : root_path
   end
 
   def create
@@ -9,9 +10,7 @@ class SessionsController < ApplicationController
     ah = auth_hash
     session[:handle] = ah.info.nickname
     session[:name] = ah.info.name
-    #@user = User.find_or_create_by_login_and_name(login, name)
-    #self.current_user = @user
-    redirect_to params.fetch(:final_url, root_path)
+    redirect_to session[:redirect_url] || root_path
   end
 
   def destroy

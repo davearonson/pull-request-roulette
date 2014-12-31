@@ -14,7 +14,7 @@ PullRequestRoulette::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :pull_requests
+  resources :pull_requests, except: :update
 
   get 'auth/:provider/callback' =>'sessions#create', as: 'oauth_callback'
   get '/sign_out' =>'sessions#destroy', as: 'sign_out'

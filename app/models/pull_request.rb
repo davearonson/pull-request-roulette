@@ -9,7 +9,7 @@ class PullRequest < ActiveRecord::Base
     false
   end
 
-  def self.from_url options
+  def self.from_url(options)
     user, repo, number = self.parse_url options[:url]
     new user: user, repo: repo, number: number, submitter: options[:submitter]
   end
@@ -41,7 +41,7 @@ class PullRequest < ActiveRecord::Base
     false
   end
 
-  def self.parse_url url
+  def self.parse_url(url)
     match_data = url_regex.match(url)
     match_data[3..5] if match_data
   end

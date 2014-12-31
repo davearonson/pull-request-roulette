@@ -6,7 +6,7 @@ def given_an_existing_pr
   @pr.save!
 end
 
-def given_i_am_signed_in handle = test_user_handle 
+def given_i_am_signed_in(handle = test_user_handle)
   @user_handle = handle
   PullRequestsController.any_instance.stub(:authorize)
   PullRequestsController.any_instance.stub(:signed_in?) { true }
@@ -39,7 +39,7 @@ def open_pr_url
   PullRequest.url_format % open_pr_parts
 end
 
-def stub_finding_pr args = {}
+def stub_finding_pr(args = {})
   options = args.reverse_merge({ state: 'open', author: test_user_handle })
   PullRequest.any_instance.stub(:fetch_pr_data) { OpenStruct.new(state: options[:state],
                                                                  user: OpenStruct.new(login: options[:author])) }
