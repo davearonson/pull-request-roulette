@@ -6,11 +6,6 @@ pull-request-roulette
 [![Coverage Status](https://coveralls.io/repos/davearonson/pull-request-roulette/badge.png?branch=master)](https://coveralls.io/r/davearonson/pull-request-roulette?branch=master)
 [![Dependency Status](https://gemnasium.com/davearonson/pull-request-roulette.svg)](https://gemnasium.com/davearonson/pull-request-roulette)
 
-(Yes, *one* dependency is out of date.  The latest ```coveralls``` depends on
-```thor``` 0.18.1, while the latest ```jquery-rails``` depends on ```thor```
-0.19.1.  So ```coveralls```, just a helpful tool that only runs in test, is
-*one patch* out of date.)
-
 Web app to match up developers, with public pull requests (PRs) on Github, with
 people willing to comment on their PRs.
 
