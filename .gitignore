@@ -20,3 +20,6 @@
 
 # Ignore stuff that should not be shared
 /SECRETS
+
+# ignore coverage reports
+/coverage
