@@ -1,5 +1,5 @@
 env:
-  - SECRET_KEY_BASE="$(bundle exec rake secret)"
+  - RAILS_SECRET_KEY_BASE="$(bundle exec rake secret)"
 language: ruby
 rvm:
   - "2.1.5"
