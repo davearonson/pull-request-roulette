@@ -44,7 +44,6 @@ end
 
 def then_i_am_logged_in
   expect($GITHUB_AUTH_TOKEN).not_to be_blank
-  expect($GITHUB_AUTH_TOKEN).not_to be_blank
 end
 
 def then_i_am_redirected_to_github_login_page
