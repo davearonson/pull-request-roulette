@@ -5,7 +5,8 @@ describe PullRequest do
   describe '.from_url' do
 
     it 'accepts open pulls' do
-        PullRequest.from_url(url: open_pr_url, submitter: 'some-handle').should be_valid
+      expect(PullRequest.from_url(url: open_pr_url, submitter: 'whatever')).
+          to be_valid
     end
 
   end
@@ -53,32 +54,34 @@ describe PullRequest do
     describe 'parses' do
 
       it 'canonical github URLs' do
-        PullRequest.parse_url(open_pr_url).should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url)).to eq open_pr_parts
       end
 
       it 'valid URLs w/ plain http, not httpS' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', 'http://')).
-          should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url.gsub('https://', 'http://'))).
+            to eq open_pr_parts
       end
 
       it 'valid URLs w/ www' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', 'https://www.')).
-          should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url.gsub('https://',
+                                                      'https://www.'))).
+            to eq open_pr_parts
       end
 
       it 'valid URLs w/ www AND plain http' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', 'http://www.')).
-          should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url.gsub('https://',
+                                                      'http://www.'))).
+            to eq open_pr_parts
       end
 
       it 'valid URLs w/o http or https' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', '')).
-          should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url.gsub('https://', ''))).
+            to eq open_pr_parts
       end
 
       it 'valid URLs w/o http or https AND w/ www' do
-        PullRequest.parse_url(open_pr_url.gsub('https://', 'www.')).
-          should == open_pr_parts
+        expect(PullRequest.parse_url(open_pr_url.gsub('https://', 'www.'))).
+            to eq open_pr_parts
       end
 
     end
@@ -86,15 +89,16 @@ describe PullRequest do
     describe 'rejects' do
 
       it 'URLs not at github' do
-        PullRequest.parse_url(open_pr_url.gsub('github', 'bughit')).should be_nil
+        expect(PullRequest.parse_url(open_pr_url.gsub('github', 'bughit'))).
+           to be_nil
       end
 
       it 'URLs missing a piece' do
-        PullRequest.parse_url(open_pr_url.gsub('/pull/', '/')).should be_nil
+        expect(PullRequest.parse_url(open_pr_url.gsub('/pull/', '/'))).to be_nil
       end
 
       it 'URLs with extra junk tacked onto the end' do
-        PullRequest.parse_url(open_pr_url + '?foo=bar').should be_nil
+        expect(PullRequest.parse_url(open_pr_url + '?foo=bar')).to be_nil
       end
     end
 
@@ -107,7 +111,7 @@ private
 
 def test_pr_validations(url, found, open, errors)
   pr = PullRequest.from_url(url: url, submitter: 'some-handle')
-  pr.found?.should == found
-  pr.open?.should == open
-  pr.errors[:base].empty?.should_not == errors
+  expect(pr.found?).to eq found
+  expect(pr.open?).to eq open
+  expect(pr.errors[:base].empty?).not_to eq errors
 end

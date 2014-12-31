@@ -1,4 +1,4 @@
-require_relative '../spec_helper.rb'
+require 'rails_helper.rb'
 
 describe 'submit a pr' do
 
@@ -93,32 +93,35 @@ end
 # THENS
 
 def then_i_should_be_its_submitter
-  page.should have_content @user_handle
+  expect(page).to have_content @user_handle
 end
 
 def then_i_should_get_error_message msg=nil
-  page.should have_content msg_for_could_not_save
-  page.should have_content(msg) if msg.present?
-  page.should_not have_content msg_for_could_save
+  expect(page).to have_content msg_for_could_not_save
+  expect(page).to have_content(msg) if msg.present?
+  expect(page).not_to have_content msg_for_could_save
 end
 
 def then_i_should_not_get_error_message
-  page.should_not have_content msg_for_could_not_save
-  page.should have_content msg_for_could_save
+  expect(page).not_to have_content msg_for_could_not_save
+  expect(page).to have_content msg_for_could_save
 end
 
 def then_its_author_should_be_listed
-  page.should have_content @author
+  expect(page).to have_content @author
 end
 
 def then_pr_is_in_system
   user, repo, number = PullRequest.parse_url @pr_url
-  PullRequest.where(user: user).where(repo: repo).where(number: number).count.should == 1
+  expect(PullRequest.where(user: user).
+                     where(repo: repo).
+                     where(number: number).
+                     count).to eq 1
 end
 
 def then_pr_is_not_in_system
   visit pull_requests_path
-  page.should_not have_content @pr_url
+  expect(page).not_to have_content @pr_url
 end
 
 # HELPERS

@@ -1,9 +1,10 @@
-require_relative '../spec_helper.rb'
+require 'rails_helper.rb'
 
 describe 'log in' do
 
   it 'logs people in with valid credentials' do
     pending 'need to figure out how to test with oauth redirects'
+    raise "sheesh, shouldn't need to raise an error, take my word it's PENDING!"
     given_i_am_not_logged_in
     when_i_try_to_submit_a_pr
 
@@ -38,12 +39,12 @@ def when_i_try_to_submit_a_pr
 end
 
 def then_i_am_at_new_pr_page
-  current_url.index(loc).should == new_pull_request_url
+  expect(current_url.index(loc)).to eq new_pull_request_url
 end
 
 def then_i_am_logged_in
-  $GITHUB_AUTH_TOKEN.should_not == nil
-  $GITHUB_AUTH_TOKEN.should_not == ''
+  expect($GITHUB_AUTH_TOKEN).not_to be_blank
+  expect($GITHUB_AUTH_TOKEN).not_to be_blank
 end
 
 def then_i_am_redirected_to_github_login_page
@@ -51,5 +52,5 @@ def then_i_am_redirected_to_github_login_page
   puts
   puts current_url
   puts
-  current_url.index(loc).should == 0
+  expect(current_url.index(loc)).not_to eq == 0
 end

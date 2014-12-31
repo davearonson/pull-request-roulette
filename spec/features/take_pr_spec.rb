@@ -1,4 +1,4 @@
-require_relative '../spec_helper.rb'
+require 'rails_helper.rb'
 
 describe 'take a pr' do
 
@@ -22,7 +22,7 @@ def when_i_ask_for_one
 end
 
 def then_i_am_told_about_it
-  page.html.should include open_pr_url
+  expect(page.html).to include open_pr_url
 end
 
 def when_i_take_it
@@ -31,5 +31,5 @@ def when_i_take_it
 end
 
 def then_i_am_not_told_about_it
-  page.html.should_not include open_pr_url
+  expect(page.html).not_to include open_pr_url
 end
