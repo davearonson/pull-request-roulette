@@ -7,7 +7,7 @@ pull-request-roulette
 [![Dependency Status](https://gemnasium.com/davearonson/pull-request-roulette.svg)](https://gemnasium.com/davearonson/pull-request-roulette)
 
 (Yes, *one* dependency is out of date.  The latest ```coveralls``` depends on
-```thor``` 0.81.1, while the latest ```jquery-rails``` depends on ```thor```
+```thor``` 0.18.1, while the latest ```jquery-rails``` depends on ```thor```
 0.19.1.  So ```coveralls```, just a helpful tool that only runs in test, is
 *one patch* out of date.)
 
