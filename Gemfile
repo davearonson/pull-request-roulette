@@ -20,6 +20,7 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
+  gem 'coveralls', '~> 0.7.1', require: false
   gem 'launchy'
   gem 'pry'
   gem 'byebug'
@@ -63,5 +64,3 @@ gem 'jbuilder', '~> 2.2.6'
 
 # To use debugger
 # gem 'debugger'
-
-gem 'coveralls', require: false
