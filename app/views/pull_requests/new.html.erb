@@ -1,11 +1,10 @@
 <h1>New Pull Request</h1>
-<p>
+
 <%= simple_form_for(@pull_request) do |f| %>
-  <%= f.hint raw '(Must fit the format: <code>https://github.com/username/projectname/pull/pullnumber</code>)' %>
-  <p></p>
   <% if @pull_request.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pull_request.errors.count, "error") %> prohibited this pull request from being saved:</h2>
+      <h2><%= pluralize(@pull_request.errors.count, "error") %>
+      prohibited this pull request from being saved:</h2>
 
       <ul>
       <% @pull_request.errors.full_messages.each do |msg| %>
@@ -18,9 +17,15 @@
   <div class="fieldset">
     <div class="row collapse">
       <div class="small-3 columns">
-        <label for="url">URL</label>
+        <label for="url">Pull Request Github URL</label>
       </div>
-      <div class="small-9 columns"><input id="url" name="url" type="text" /></div>
+      <div class="small-9 columns">
+        <input id="url" name="url" type="text" />
+        <span class="input-hint">
+          (Must fit the format:
+          <code>https://github.com/<i>username</i>/<i>projectname</i>/pull/<i>pullnumber</i></code>)
+        </span>
+      </div>
     </div>
     <br/>
     <div class="row collapse">

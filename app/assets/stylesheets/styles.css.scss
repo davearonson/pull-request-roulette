@@ -74,17 +74,17 @@
   padding-bottom: 20px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
- h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    background-color: #c00;
+    color: #fff;
   }
 
-   p {
+  p {
     color: #333 !important;
     margin-bottom: 0;
     padding: 5px;
@@ -98,16 +98,22 @@
     padding: 5px 5px 0 5px;
   }
 
-   ul {
+  ul {
     margin-top: 20px;
     margin-left: 20px;
   }
+
 }
 
 //#submit-link {
 //  font-size: 1.2em;
 //  font-weight: bold;
 //}
+
+.input-hint {
+  font-size: .9em;
+  font-weight: normal;
+}
 
 .field_with_errors {
   padding: 2px;

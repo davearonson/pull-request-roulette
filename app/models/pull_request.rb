@@ -71,7 +71,8 @@ class PullRequest < ActiveRecord::Base
   private
 
   def fetch_pr_data
-    github = Github.new client_id: ENV['GITHUB_KEY'], client_secret: ENV['GITHUB_SECRET']
+    github = Github.new(client_id: ENV['GITHUB_KEY'],
+                        client_secret: ENV['GITHUB_SECRET'])
     begin
       github.pull_requests.find(user, repo, number)
     rescue ArgumentError, Github::Error::NotFound, URI::InvalidURIError
