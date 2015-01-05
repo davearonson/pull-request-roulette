@@ -235,7 +235,7 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.6.0)
+    uglifier (2.6.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     xpath (2.0.0)
@@ -269,5 +269,5 @@ DEPENDENCIES
   sass-rails
   simple_form
   turbolinks
-  uglifier (>= 1.0.3)
+  uglifier (~> 2.6.1)
   zurb-foundation
