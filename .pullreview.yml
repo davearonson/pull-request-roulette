@@ -1,6 +1,8 @@
 rules:
   ignore:
     # i use curlies when using the *value* of the block
-  - avoid_using_curly_braces_for_multi-line_blocks    
+  - avoid_using_curly_braces_for_multi-line_blocks
   - missing_class_documentation
   - missing_method_documentation
+  - prefer_ruby_19_new_hash_syntax
+  - prefer_single_quoted_strings
