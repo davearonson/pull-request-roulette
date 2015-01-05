@@ -1,5 +1,5 @@
 class PullRequestsController < ApplicationController
-  before_action :authorize, only: [:new, :destroy]
+  before_action :authorize, except: :index
   helper_method :signed_in?
 
   def index
@@ -39,7 +39,7 @@ class PullRequestsController < ApplicationController
   private
 
   def authorize
-    authorize_github_and_return_to request.url unless signed_in?
+    authorize_github_and_return_to(request.url) unless signed_in?
   end
 
 end
