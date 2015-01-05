@@ -18,6 +18,9 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
+  # cannot update coveralls to 0.7.2 --
+  # depends on exactly thor 0.18.1, but
+  # jquery-rails depends on exactly 0.19.1
   gem 'coveralls', '~> 0.7.1', require: false
   gem 'launchy'
   gem 'pry'
