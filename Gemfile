@@ -21,7 +21,6 @@ group :test, :development do
   gem 'coveralls', '~> 0.7.1', require: false
   gem 'launchy'
   gem 'pry'
-  gem 'byebug'
   gem 'rspec-rails'
 end
 
