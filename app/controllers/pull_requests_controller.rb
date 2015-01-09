@@ -15,7 +15,7 @@ class PullRequestsController < ApplicationController
                                          submitter: current_user_handle)
     if @pull_request.save
       redirect_to(pull_requests_path,
-                  flash: { success: 'Pull request was successfully created.' } )
+                  flash: { success: 'Pull request was successfully created.' })
     else
       render 'new'
     end
