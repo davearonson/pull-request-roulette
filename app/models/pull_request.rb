@@ -27,10 +27,12 @@ class PullRequest < ActiveRecord::Base
   # do this so the things can be retrieved in the right order
   def legit?
     return false unless url_parsed?
-    return false if known? && ! id  # creation of a dup
     return false unless found?
     return false unless open?
-    set_author
+    unless id
+      self.author = @pr_data.user.login
+      return false if known? # creation of a dup
+    end
     true
   end
 
@@ -44,10 +46,6 @@ class PullRequest < ActiveRecord::Base
   def self.parse_url(url)
     match_data = url_regex.match(url)
     match_data[3..5] if match_data
-  end
-
-  def set_author
-    self.author ||= @pr_data.user.login
   end
 
   def to_url

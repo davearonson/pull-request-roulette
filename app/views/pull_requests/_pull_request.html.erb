@@ -18,16 +18,16 @@
   <td class="pr-reviewer">
     <% reviewer = pull_request.reviewer %>
     <% if reviewer %>
-      Being reviewed by <%= reviewer %>
+      <%= reviewer %>
       <%# TODO: if that's the current user, let him close review %>
     <% else %>
-      Open for review!
+      None!
       <% if signed_in? %>
         <%= link_to('Take', pull_request_take_path(pull_request),
                     method: :post, class: "take-button",
                     id: "take-#{pull_request.id}") %>
       <% else %>
-        Sign in to volunteer to review it.
+        Sign in to volunteer.
       <% end %>
     <% end %>
   </td>
