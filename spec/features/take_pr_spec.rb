@@ -6,7 +6,7 @@ describe 'take a pr' do
     Given I am_signed_in
     Given an_existing_pr
     When I list_the_prs
-    Then I see_it_with_reviewer "Open for review"
+    Then I see_it_with_reviewer "None"
     When I take_it
     And I list_the_prs
     Then I see_it_with_reviewer @user_handle
@@ -23,7 +23,7 @@ def list_the_prs
   visit pull_requests_path
 end
 
-def see_it_with_reviewer name
+def see_it_with_reviewer(name)
   within "#pr-#{@pr.id}" do
     within(".pr-url") { expect(page).to have_text pr_url.gsub("https://github.com/", "") }
     within(".pr-reviewer") { expect(page).to have_text name }

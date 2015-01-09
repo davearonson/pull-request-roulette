@@ -15,13 +15,15 @@ describe SessionsController do
       ENV['GITHUB_SECRET'] = @secret = "this is the github secret"
       @github_auth_url = "github auth url"
       fake_github_client = OpenStruct.new(:authorize_url => @github_auth_url)
-      Github.stub(:new).and_return(fake_github_client)
+      expect(Github).to receive(:new).
+                     with({ client_id: @key, client_secret: @secret }).
+                     and_return(fake_github_client)
     end
 
     it "stashes referer url to redirect to" do
       url = "this represents a url"
       expect(session[:redirect_url]).to be_nil # sanity check
-      controller.request.should_receive(:referer).and_return(url)
+      expect(controller.request).to receive(:referer).and_return(url)
       get :new
       expect(session[:redirect_url]).to eq url
     end
@@ -35,8 +37,6 @@ describe SessionsController do
     end
 
     it "creates a new Github client with the correct params" do
-      expect(Github).to receive(:new).with({ client_id: @key,
-                                             client_secret: @secret })
       get :new
     end
 
@@ -49,9 +49,9 @@ describe SessionsController do
 
   describe "#create" do
     it "should successfully create a session" do
-      session[:handle].should be_nil
+      expect(session[:handle]).to be_nil
       post :create, provider: :github
-      session[:handle].should_not be_nil
+      expect(session[:handle]).not_to be_nil
     end
   end
 
@@ -60,12 +60,12 @@ describe SessionsController do
     it "should clear the session" do
       session[:auth_code] = "this is an auth code"
       delete :destroy
-      session[:auth_code].should be_nil
+      expect(session[:auth_code]).to be_nil
     end
 
     it "should redirect to the home page" do
       delete :destroy
-      response.should redirect_to root_url
+      expect(response).to redirect_to root_url
     end
 
   end
