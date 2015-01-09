@@ -21,12 +21,6 @@ class PullRequestsController < ApplicationController
     end
   end
 
-  def destroy
-    @pull_request = PullRequest.find(params[:id])
-    @pull_request.destroy if @pull_request  # check due to timing issues!
-    redirect_to pull_requests_url
-  end
-
   def take
     @pull_request = PullRequest.find(params[:pull_request_id])
     # this should never fail, if current_user_handle is kosher....
