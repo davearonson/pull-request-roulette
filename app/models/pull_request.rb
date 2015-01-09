@@ -2,6 +2,10 @@ class PullRequest < ActiveRecord::Base
 
   validate :legit?
 
+  def can_have_review_closed_by?(name)
+    [reviewer, submitter, author, user].compact.include? name
+  end
+
   def found?
     @pr_data = fetch_pr_data
     return true if @pr_data

@@ -21,7 +21,7 @@
     <% reviewer = pull_request.reviewer %>
     <% if reviewer %>
       <%= reviewer %>
-      <% if reviewer == controller.current_user_handle %>
+      <% if pull_request.can_have_review_closed_by? current_user_handle %>
         <%= link_to('Close Review', pull_request_close_review_path(pull_request),
                     method: :post, class: "close-review-button") %>
       <% end %>
