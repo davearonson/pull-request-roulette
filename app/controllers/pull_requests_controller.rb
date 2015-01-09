@@ -28,9 +28,18 @@ class PullRequestsController < ApplicationController
   end
 
   def destroy
+    @pull_request = PullRequest.find(params[:id])
+    @pull_request.destroy
     respond_to do |format|
-      @pull_request = PullRequest.find(params[:id])
-      @pull_request.destroy
+      format.html { redirect_to pull_requests_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def take
+    @pull_request = PullRequest.find(params[:pull_request_id])
+    @pull_request.update_attributes(reviewer: current_user_handle)
+    respond_to do |format|
       format.html { redirect_to pull_requests_url }
       format.json { head :no_content }
     end
