@@ -1,8 +1,9 @@
 # GIVENS
 
-def an_existing_pr
-  stub_finding_pr state: 'open'
-  @pr = PullRequest.from_url(url: pr_url, submitter: test_user_handle)
+def an_existing_pr(options={})
+  stub_finding_pr({ state: 'open' }.merge(options))
+  @pr = PullRequest.from_url({ url: pr_url,
+                               submitter: test_user_handle}.merge(options))
   @pr.save!
 end
 

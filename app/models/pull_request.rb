@@ -10,8 +10,8 @@ class PullRequest < ActiveRecord::Base
   end
 
   def self.from_url(options)
-    user, repo, number = self.parse_url options[:url]
-    new user: user, repo: repo, number: number, submitter: options[:submitter]
+    user, repo, number = self.parse_url options.delete(:url)
+    new({ user: user, repo: repo, number: number}.merge(options))
   end
 
   def known?

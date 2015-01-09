@@ -28,12 +28,12 @@ describe PullRequestsController do
 
   describe "take" do
     it "rejects taking an already taken pr" do
-      pr = PullRequest.from_url(url: pr_url,
-                                submitter: "whatever",
+      controller.stub(:signed_in?).and_return(true)
+      pr = PullRequest.from_url(url: pr_url, submitter: "whatever",
                                 reviewer: "whatever")
       pr.save!
       post :take, pull_request_id: pr.id
-      expect(response.body).to include "Sorry, that PR is already under review"
+      expect(flash[:alert]).to eq "Sorry, that PR is already under review."
     end
   end
 

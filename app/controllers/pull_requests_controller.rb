@@ -23,9 +23,14 @@ class PullRequestsController < ApplicationController
 
   def take
     @pull_request = PullRequest.find(params[:pull_request_id])
-    # this should never fail, if current_user_handle is kosher....
-    @pull_request.update_attributes!(reviewer: current_user_handle)
-    redirect_to pull_requests_url
+    if @pull_request.reviewer.present?
+      # someone's trying to pull a fast one
+      redirect_to(pull_requests_path,
+                  flash: { alert: 'Sorry, that PR is already under review.' })
+    else
+      @pull_request.update_attributes!(reviewer: current_user_handle)
+      redirect_to pull_requests_url
+    end
   end
 
   private
