@@ -14,7 +14,7 @@ PullRequestRoulette::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :pull_requests, except: [:show, :edit, :update] do
+  resources :pull_requests, only: [:index, :new, :create] do
     post 'take'
   end
 
