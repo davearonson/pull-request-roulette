@@ -14,6 +14,19 @@ def am_signed_in(handle = test_user_handle)
   PullRequestsController.any_instance.stub(:current_user_handle) { handle }
 end
 
+# WHENS
+
+def list_the_prs
+  visit pull_requests_path
+end
+
+def see_it_with_reviewer(name)
+  within "#pr-#{@pr.id}" do
+    within(".pr-url") { expect(page).to have_text pr_url.gsub("https://github.com/", "") }
+    within(".pr-reviewer") { expect(page).to have_text name }
+  end
+end
+
 # OTHER
 
 def closed_pr_parts

@@ -16,6 +16,7 @@ PullRequestRoulette::Application.routes.draw do
 
   resources :pull_requests, only: [:index, :new, :create] do
     post 'take'
+    post 'close_review'
   end
 
   get 'auth/:provider/callback' => 'sessions#create', as: 'oauth_callback'

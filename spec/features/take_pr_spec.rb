@@ -24,17 +24,6 @@ end
 
 private
 
-def list_the_prs
-  visit pull_requests_path
-end
-
-def see_it_with_reviewer(name)
-  within "#pr-#{@pr.id}" do
-    within(".pr-url") { expect(page).to have_text pr_url.gsub("https://github.com/", "") }
-    within(".pr-reviewer") { expect(page).to have_text name }
-  end
-end
-
 def take_it
   stub_finding_pr state: 'open'
   click_on "take-#{@pr.id}"

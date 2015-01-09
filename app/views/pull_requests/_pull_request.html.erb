@@ -1,3 +1,5 @@
+<%# TODO: MOVE ALL THIS LOGIC INTO A PRESENTER! %>
+
 <tr id="pr-<%= pull_request.id %>">
   <% url = pull_request.to_url %>
   <td class="pr-url">
@@ -19,7 +21,10 @@
     <% reviewer = pull_request.reviewer %>
     <% if reviewer %>
       <%= reviewer %>
-      <%# TODO: if that's the current user, let him close review %>
+      <% if reviewer == controller.current_user_handle %>
+        <%= link_to('Close Review', pull_request_close_review_path(pull_request),
+                    method: :post, class: "close-review-button") %>
+      <% end %>
     <% else %>
       None!
       <% if signed_in? %>
