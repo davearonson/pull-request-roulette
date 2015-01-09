@@ -13,36 +13,25 @@ class PullRequestsController < ApplicationController
   def create
     @pull_request = PullRequest.from_url(url: params[:url],
                                          submitter: current_user_handle)
-    respond_to do |format|
-      if @pull_request.save
-        format.html { redirect_to pull_requests_path,
-                      flash: { success: 'Pull request was successfully created.' } }
-        format.json { render action: 'show', status: :created,
-                      location: @pull_request }
-      else
-        format.html { render 'new' }
-        format.json { render json: @pull_request.errors,
-                      status: :unprocessable_entity }
-      end
+    if @pull_request.save
+      redirect_to(pull_requests_path,
+                  flash: { success: 'Pull request was successfully created.' } )
+    else
+      render 'new'
     end
   end
 
   def destroy
     @pull_request = PullRequest.find(params[:id])
-    @pull_request.destroy
-    respond_to do |format|
-      format.html { redirect_to pull_requests_url }
-      format.json { head :no_content }
-    end
+    @pull_request.destroy if @pull_request  # check due to timing issues!
+    redirect_to pull_requests_url
   end
 
   def take
     @pull_request = PullRequest.find(params[:pull_request_id])
-    @pull_request.update_attributes(reviewer: current_user_handle)
-    respond_to do |format|
-      format.html { redirect_to pull_requests_url }
-      format.json { head :no_content }
-    end
+    # this should never fail, if current_user_handle is kosher....
+    @pull_request.update_attributes!(reviewer: current_user_handle)
+    redirect_to pull_requests_url
   end
 
   private
