@@ -16,31 +16,15 @@ ActiveRecord::Schema.define(version: 20150108221535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",                                      null: false
-    t.string   "github_login", limit: 39,                      null: false
-    t.boolean  "visible",                  default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name",         limit: 255, default: "UNKNOWN"
-  end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
-
   create_table "pull_requests", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user",       limit: 255, default: "UNKNOWN", null: false
-    t.string   "repo",       limit: 255, default: "UNKNOWN", null: false
-    t.integer  "number",                 default: 0,         null: false
-    t.string   "submitter",  limit: 255, default: "",        null: false
-    t.string   "author",     limit: 255, default: "UNKNOWN", null: false
-    t.string   "reviewer"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "user",                  default: "UNKNOWN", null: false
+    t.string   "repo",                  default: "UNKNOWN", null: false
+    t.integer  "number",                default: 0,         null: false
+    t.string   "submitter",             default: "UNKNOWN", null: false
+    t.string   "author",                default: "UNKNOWN", null: false
+    t.string   "reviewer",   limit: 39
   end
 
 end
