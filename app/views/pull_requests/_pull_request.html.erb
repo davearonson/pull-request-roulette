@@ -1,0 +1,34 @@
+<tr id="pr-<%= pull_request.id %>">
+  <% url = pull_request.to_url %>
+  <td class="pr-url">
+    <%= link_to(url.gsub("https://github.com/", ""),
+                url, target: '_new') %>
+  </td>
+  <td class="pr-author">
+    <%= link_to("#{pull_request.author}",
+                  github_user_url(pull_request.author),
+                  target: '_new') %>
+  </td>
+  <td class="pr-submitter">
+    <%= link_to("#{pull_request.submitter}",
+                  github_user_url(pull_request.submitter),
+                  target: '_new') %>
+    <%# TODO: if that's the current user, let him close review %>
+  </td>
+  <td class="pr-reviewer">
+    <% reviewer = pull_request.reviewer %>
+    <% if reviewer %>
+      Being reviewed by <%= reviewer %>
+      <%# TODO: if that's the current user, let him close review %>
+    <% else %>
+      Open for review!
+      <% if signed_in? %>
+        <%= link_to('Take', pull_request_take_path(pull_request),
+                    method: :post, class: "take-button",
+                    id: "take-#{pull_request.id}") %>
+      <% else %>
+        Sign in to volunteer to review it.
+      <% end %>
+    <% end %>
+  </td>
+</tr>

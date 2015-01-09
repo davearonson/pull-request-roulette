@@ -12,30 +12,11 @@
         <th>URL</th>
         <th>Author</th>
         <th>Submitter</th>
-        <% if signed_in? %>
-          <th></th>
-        <% end %>
+        <th>Reviewer</th>
       </tr>
     </thead>
     <tbody>
-      <% @pull_requests.each do |pull_request| %>
-        <tr>
-          <td><%= link_to("#{pull_request.user}/#{pull_request.repo}/pull/#{pull_request.number}",
-                          pull_request.to_url, target: '_new') %></td>
-          <td><%= link_to("#{pull_request.author}",
-                          github_user_url(pull_request.author),
-                          target: '_new') %></td>
-          <td><%= link_to("#{pull_request.submitter}",
-                          github_user_url(pull_request.submitter),
-                          target: '_new') %></td>
-          <% if signed_in? %>
-            <td>
-              <%= link_to 'Take', pull_request, method: :delete,
-                data: { confirm: 'Are you sure?' }, id: "take-#{pull_request.id}" %>
-            </td>
-          <% end %>
-        </tr>
-      <% end %>
+      <%= render @pull_requests %>
     </tbody>
   <% else %>
     <tbody>
