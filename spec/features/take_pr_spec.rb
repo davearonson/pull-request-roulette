@@ -12,7 +12,12 @@ describe 'take a pr' do
     Then I see_it_with_reviewer @user_handle
   end
 
+  # never mind, this is covered by a controller test,
+  # since NLI users don't even get a take button
   # it 'redirects a non-logged-in user to log in'
+
+  # never mind, this is covered by a controller test,
+  # since taken PRs don't even get a take button
   # it 'rejects taking an already-taken pr'
 
 end
