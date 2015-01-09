@@ -10,11 +10,6 @@ pull-request-roulette
 Web app to match up developers, with public pull requests (PRs) on Github, with
 people willing to comment on their PRs.
 
-This app is sort of a learning platform for me.  I started it in Ruby 2.0 and
-Rails 4.0 before either were released, and I'm using it to learn dealing with
-them, Github Issues, Github Wiki, Github API, Code Climate, Travis CI, and
-eventually other things too.
-
 The current workflow is:
 
 - Project owner Polly has a project.
@@ -27,11 +22,15 @@ The current workflow is:
 
 - Reviewer Rachel comes to PRR, sees Carol's PR in the list, and "takes" it.
 
-- It is now gone from the list, and PRR's part in the workflow ends.
+- It is now marked as under review by Rachel.
 
 - The hope is that Rachel will give Carol's PR a thorough review, using
   comments or email to notify Carol and Polly when done, and Rachel's comments
   will help Polly decide whether to accept it.
+
+- The next step is that Carol or Rachel or Polly will come to PRR and mark the
+  PR as no longer under review, either to solicit more reviews, or to remove it
+  from the list.  However, that step is not yet implemented.
 
 Yes, that's very simple.  There's only one thing being stored (a simple PR
 descriptor), and it's not even full CRUD as there is no Update.  But this is
