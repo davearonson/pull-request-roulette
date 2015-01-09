@@ -1,12 +1,12 @@
 # GIVENS
 
-def given_an_existing_pr
+def an_existing_pr
   stub_finding_pr state: 'open'
-  @pr = PullRequest.from_url(url: open_pr_url, submitter: test_user_handle)
+  @pr = PullRequest.from_url(url: pr_url, submitter: test_user_handle)
   @pr.save!
 end
 
-def given_i_am_signed_in(handle = test_user_handle)
+def am_signed_in(handle = test_user_handle)
   @user_handle = handle
   PullRequestsController.any_instance.stub(:authorize)
   PullRequestsController.any_instance.stub(:signed_in?) { true }
@@ -35,7 +35,7 @@ def open_pr_parts
   ['davearonson', 'pull-request-roulette', '14']
 end
 
-def open_pr_url
+def pr_url
   PullRequest.url_format % open_pr_parts
 end
 
