@@ -28,9 +28,9 @@ The current workflow is:
   comments or email to notify Carol and Polly when done, and Rachel's comments
   will help Polly decide whether to accept it.
 
-- The next step is that Carol or Rachel or Polly will come to PRR and mark the
-  PR as no longer under review, either to solicit more reviews, or to remove it
-  from the list.  However, that step is not yet implemented.
+- Eventually Carol or Rachel or Polly will come to PRR and mark the PR as no
+  longer under review, either to solicit more reviews, or to remove it from the
+  list.  However, removal is not yet implemented.
 
 Yes, that's very simple.  There's only one thing being stored (a simple PR
 descriptor), and it's not even full CRUD as there is no Update.  But this is
