@@ -15,7 +15,7 @@ class PullRequest < ActiveRecord::Base
 
   def self.from_url(options)
     user, repo, number = self.parse_url options.delete(:url)
-    new({ user: user, repo: repo, number: number}.merge(options))
+    new({ user: user, repo: repo, number: number }.merge(options))
   end
 
   def known?
