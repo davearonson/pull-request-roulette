@@ -1,4 +1,7 @@
-<h1 class="header">Welcome to Pull Request Roulette</h1>
+<h1 class="header">Welcome to<br/>
+  <big>Pull Request R<%= image_tag("roulette_spins_128x129.gif",
+                                   class: "undescended-letter-size-image" )
+                      %>ulette</big></h1>
 
 <% if signed_in? %>
   <%= link_to('Submit a New Pull Request', new_pull_request_path,
