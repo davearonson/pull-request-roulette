@@ -19,6 +19,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= favicon_link_tag "favicon.gif" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -71,6 +72,25 @@
                 target: '_new') %> for more information, such as planned
         features.&nbsp; Please read the README, browse the issues, and suggest
         more features.</p>
+
+        <p>Further credits:
+        <ul>
+
+          <li>
+            Roulette wheel animation:
+            <%= link_to("Animation Library",
+                        "http://www.animationlibrary.com/animation/27468/Roulette_spins/",
+                        target: "_new") %>
+          </li>
+
+          <li>
+            Pull Request icon for favicon, before I turned it white:
+            <%= link_to("Wikimedia Commons",
+                        "http://commons.wikimedia.org/wiki/Category:Git",
+                        target: "_new") %>
+          </li>
+
+        </ul></p>
 
       </div>
     </div>
