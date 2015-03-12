@@ -21,7 +21,7 @@ group :test, :development do
   # cannot update coveralls to 0.7.2 --
   # depends on exactly thor 0.18.1, but
   # jquery-rails depends on exactly 0.19.1
-  gem 'coveralls', '~> 0.7.1', require: false
+  gem 'coveralls', '~> 0.7.11', require: false
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
@@ -40,7 +40,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   #   gem 'therubyracer', platforms: :ruby
 
-  gem 'uglifier', '~> 2.6.1'
+  gem 'uglifier', '~> 2.7.1'
 end
 
 gem 'jquery-rails'
@@ -49,7 +49,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.6'
+gem 'jbuilder', '~> 2.2.11'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
