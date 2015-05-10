@@ -2,14 +2,14 @@ ruby '2.1.5'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'github_api'
-gem 'pg'
-gem 'simple_form'
-gem 'zurb-foundation'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-github', '~> 1.1.2'
+gem 'github_api', '~> 0.12.3'
+gem 'pg', '~> 0.18.1'
+gem 'simple_form', '~> 3.1.0'
+gem 'zurb-foundation', '~> 4.3.2'
 
 group :test, :development do
   gem 'better_errors'
@@ -18,17 +18,14 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
-  # cannot update coveralls to 0.7.2 --
-  # depends on exactly thor 0.18.1, but
-  # jquery-rails depends on exactly 0.19.1
-  gem 'coveralls', '~> 0.7.11', require: false
+  gem 'coveralls', '~> 0.8.1'
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 # Gems used only for assets and not required
@@ -43,13 +40,13 @@ group :assets do
   gem 'uglifier', '~> 2.7.1'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.3'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.11'
+gem 'jbuilder', '~> 2.2.13'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
