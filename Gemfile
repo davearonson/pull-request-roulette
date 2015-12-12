@@ -2,13 +2,13 @@ ruby '2.1.5'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-github', '~> 1.1.2'
-gem 'github_api', '~> 0.12.3'
-gem 'pg', '~> 0.18.1'
-gem 'simple_form', '~> 3.1.0'
+gem 'github_api', '~> 0.13.0'
+gem 'pg', '~> 0.18.4'
+gem 'simple_form', '~> 3.2.0'
 gem 'zurb-foundation', '~> 4.3.2'
 
 group :test, :development do
@@ -18,7 +18,7 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
-  gem 'coveralls', '~> 0.8.1'
+  gem 'coveralls', '~> 0.8.10'
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
@@ -40,13 +40,13 @@ group :assets do
   gem 'uglifier', '~> 2.7.1'
 end
 
-gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-rails', '~> 4.0.5'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.13'
+gem 'jbuilder', '~> 2.3.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
