@@ -1,4 +1,4 @@
-ruby '2.1.5'
+ruby '2.2.4'
 source 'https://rubygems.org'
 
 # because psych doesn't handle erb right

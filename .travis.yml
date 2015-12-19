@@ -2,7 +2,7 @@ env:
   - RAILS_SECRET_KEY_BASE="$(bundle exec rake secret)"
 language: ruby
 rvm:
-  - "2.1.5"
+  - "2.2.4"
 before_script:
   - psql -c 'create database pullrequestroulette_test;' -U postgres
   - bundle exec rake db:migrate
