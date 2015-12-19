@@ -1,6 +1,9 @@
 ruby '2.1.5'
 source 'https://rubygems.org'
 
+# because psych doesn't handle erb right
+gem 'syck'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
