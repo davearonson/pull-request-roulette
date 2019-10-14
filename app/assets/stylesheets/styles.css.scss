@@ -140,3 +140,16 @@
     word-wrap: break-word;
   }
 }
+
+@media only screen and (min-width: 975px) {
+  .columns {
+    &.custom-9 {
+        position: relative;
+        width: 75%;
+    }
+    &.custom-3 {
+      position: relative;
+      width: 25%;
+    }
+  }
+}
