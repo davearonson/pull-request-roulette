@@ -74,6 +74,7 @@
   padding-bottom: 20px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+
   h2 {
     text-align: left;
     font-weight: bold;
@@ -127,4 +128,30 @@
 
 .undescended-letter-size-image {
   height: 0.55em;
+}
+
+.pr-list {
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed;
+
+  .pr-url {
+    max-width: 285px;
+    word-wrap: break-word;
+  }
+}
+
+@media only screen and (min-width: 975px) {
+  .columns {
+
+    &.custom-9 {
+      position: relative;
+      width: 75%;
+    }
+
+    &.custom-3 {
+      position: relative;
+      width: 25%;
+    }
+  }
 }
