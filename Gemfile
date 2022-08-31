@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-gem 'omniauth', '~> 1.2.2'
+gem 'omniauth', '~> 1.4.3'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'github_api', '~> 0.13.0'
 gem 'pg', '~> 0.18.4'
